@@ -10,7 +10,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <Text style={{ color: "#000000" }}>Coffee Roastery</Text>
       <Button
-        label="Order your coffee!"
+        label="Let's coffee!"
         onPress={() => navigation.navigate("Order")}
       />
     </View>

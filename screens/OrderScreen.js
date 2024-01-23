@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/navigationBar";
 const OrderScreen = ({ navigation, route }) => {
   return (
     <View style={styles.orderContainer}>
