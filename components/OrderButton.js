@@ -1,13 +1,10 @@
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-export default function OrderButton({ label, theme }) {
+export default function OrderButton({ label, theme, onPress }) {
   return (
     <View style={styles.buttonContainer}>
-      <Pressable
-        style={styles.button}
-        onPress={() => alert("You have added an order!")}
-      >
+      <Pressable style={styles.button} onPress={onPress}>
         <Text style={styles.buttonLabel}>{label}</Text>
       </Pressable>
     </View>
