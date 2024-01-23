@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-const NavigationBar = () => {
+const NavigationMenu = () => {
   const navItems = [
     "Deals",
     "Hot Drinks",
@@ -58,4 +58,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NavigationBar;
+export default NavigationMenu;

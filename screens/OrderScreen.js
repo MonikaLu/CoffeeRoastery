@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-import NavigationBar from "../components/NavigationBar";
+import NavigationMenu from "../components/NavigationMenu";
 import CoffeeMenu from "../components/CoffeeMenu";
 const OrderScreen = ({ navigation, route }) => {
   return (
     <View style={styles.orderContainer}>
-      <NavigationBar />
+      <NavigationMenu />
       <CoffeeMenu />
     </View>
   );
