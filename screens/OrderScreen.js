@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff7ed",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    padding: 10,
   },
   titleText: {
     fontSize: 15,

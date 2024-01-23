@@ -1,3 +1,4 @@
+import React from "react";
 import {
   View,
   Text,
@@ -7,34 +8,27 @@ import {
 } from "react-native";
 
 const NavigationBar = () => {
+  const navItems = [
+    "Deals",
+    "Hot Drinks",
+    "Cold Drinks",
+    "Lunch",
+    "Milkshakes",
+    "Smoothie",
+  ];
+
   return (
     <View style={styles.navContainer}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        <TouchableOpacity
-          style={styles.navItem}
-          onPress={() => console.log("Order Your Coffee!")}
-        >
-          <Text style={styles.navText}>Order Your Coffee!</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.navItem}
-          onPress={() => console.log("Deals")}
-        >
-          <Text style={styles.navText}>Deals</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.navItem}
-          onPress={() => console.log("Hot Drinks")}
-        >
-          <Text style={styles.navText}>Hot Drinks</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.navItem}
-          onPress={() => console.log("Cold Drinks")}
-        >
-          <Text style={styles.navText}>Cold Drinks</Text>
-        </TouchableOpacity>
-        {/* Add more items as needed */}
+        {navItems.map((item, index) => (
+          <TouchableOpacity
+            style={styles.navItem}
+            onPress={() => console.log(item)}
+            key={index}
+          >
+            <Text style={styles.navText}>{item}</Text>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   );
@@ -42,7 +36,7 @@ const NavigationBar = () => {
 
 const styles = StyleSheet.create({
   navContainer: {
-    backgroundColor: "#fff", // White background for the entire bar
+    backgroundColor: "#fff",
     height: 50,
   },
   scrollView: {
@@ -53,7 +47,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ffffff", // Deep purple for the item background
+    backgroundColor: "#ffffff",
     borderRadius: 20,
     marginHorizontal: 5,
     marginTop: 5,
