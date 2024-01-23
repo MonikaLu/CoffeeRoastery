@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-export default function OrderButton({ label, theme, onPress }) {
+export default function Button({ label, theme, onPress }) {
   return (
     <View style={styles.buttonContainer}>
       <Pressable style={styles.button} onPress={onPress}>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderWidth: "1",
   },
   buttonLabel: {
-    color: "#fff",
+    color: "#000000",
     fontSize: 16,
   },
 });

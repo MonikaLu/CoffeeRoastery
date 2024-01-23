@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image } from "react-native";
-
+import NavigationBar from "../components/navigationBar";
 const OrderScreen = ({ navigation, route }) => {
   return (
     <View style={styles.orderContainer}>
-      <Text style={styles.titleText}>Order Your Coffee!</Text>
+      <NavigationBar />
     </View>
   );
 };
@@ -11,14 +11,15 @@ const OrderScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   orderContainer: {
     flex: 1,
-    backgroundColor: "#4ade80",
-    alignItems: "center",
+    backgroundColor: "#fff7ed",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    padding: 10,
   },
   titleText: {
-    fontSize: 40,
+    fontSize: 15,
     fontWeight: "bold",
-    color: "#ffffff",
-    fontFamily: "Cochin",
+    color: "#000000",
   },
 });
 

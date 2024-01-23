@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 const PlaceholderImage = require("./../assets/logo.png");
-import OrderButton from "./../components/OrderButton";
+import Button from "../components/Button";
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -9,7 +9,7 @@ const HomeScreen = ({ navigation }) => {
         <Image source={PlaceholderImage} style={styles.image} />
       </View>
       <Text style={{ color: "#000000" }}>Coffee Roastery</Text>
-      <OrderButton
+      <Button
         label="Order your coffee!"
         onPress={() => navigation.navigate("Order")}
       />
@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#4ade80",
+    backgroundColor: "#fff7ed",
     alignItems: "center",
     justifyContent: "center",
   },
