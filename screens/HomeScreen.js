@@ -28,21 +28,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 58,
   },
-  orderContainer: {
-    flex: 1,
-    backgroundColor: "#4ade80",
-    alignItems: "center",
-  },
   image: {
     width: 100,
     height: 100,
     borderRadius: 36,
-  },
-  titleText: {
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "#ffffff",
-    fontFamily: "Cochin",
   },
 });
 
