@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image } from "react-native";
+import OrderButton from "./components/OrderButton";
 
 const PlaceholderImage = require("./assets/logo.png");
 
@@ -9,8 +10,8 @@ export default function App() {
       <View>
         <Image source={PlaceholderImage} style={styles.image} />
       </View>
-
-      <Text style={{ color: "#fefce8" }}>Coffee Roastery</Text>
+      <Text style={{ color: "#000000" }}>Coffee Roastery</Text>
+      <OrderButton label="Press!" />
       <StatusBar style="auto" />
     </View>
   );
