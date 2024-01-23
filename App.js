@@ -1,37 +1,11 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image } from "react-native";
-import OrderButton from "./components/OrderButton";
+import HomeScreen from "./screens/HomeScreen";
+import OrderScreen from "./screens/OrderScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 
-const PlaceholderImage = require("./assets/logo.png");
-
 export default function App() {
-  const HomeScreen = ({ navigation }) => {
-    return (
-      <View style={styles.container}>
-        <View>
-          <Image source={PlaceholderImage} style={styles.image} />
-        </View>
-        <Text style={{ color: "#000000" }}>Coffee Roastery</Text>
-        <OrderButton
-          label="Press!"
-          onPress={() => navigation.navigate("Order")}
-        />
-        <StatusBar style="auto" />
-      </View>
-    );
-  };
-
-  const OrderScreen = ({ navigation, route }) => {
-    return (
-      <View style={styles.container}>
-        <Text style={{ color: "#000000" }}>Order</Text>
-      </View>
-    );
-  };
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -44,6 +18,7 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
+  s;
 }
 const styles = StyleSheet.create({
   container: {
@@ -56,9 +31,20 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 58,
   },
+  orderContainer: {
+    flex: 1,
+    backgroundColor: "#4ade80",
+    alignItems: "center",
+  },
   image: {
     width: 100,
     height: 100,
     borderRadius: 36,
+  },
+  titleText: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "#ffffff",
+    fontFamily: "Cochin",
   },
 });
