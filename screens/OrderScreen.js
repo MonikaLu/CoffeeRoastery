@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   orderContainer: {
     flex: 1,
     backgroundColor: "#fff7ed",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-evenly",
   },
   titleText: {
