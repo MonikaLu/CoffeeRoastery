@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
 
 const EspressoImage = require("./../assets/espresso.jpeg");
 const CappuccinoImage = require("./../assets/cappuccino.jpeg");
@@ -16,10 +16,19 @@ const CoffeeMenu = () => {
       imageUrl: CappuccinoImage,
       price: 35,
     },
+    {
+      title: "Cappuccino",
+      imageUrl: CappuccinoImage,
+      price: 35,
+    },
   ];
 
   return (
-    <View style={styles.listView}>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={styles.listView}
+    >
       {coffeeItems.map((item, index) => (
         <View style={styles.coffeeContainer} key={index}>
           <Image source={item.imageUrl} style={styles.coffeePicture} />
@@ -27,7 +36,7 @@ const CoffeeMenu = () => {
           <Text>{item.price} Kr</Text>
         </View>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
