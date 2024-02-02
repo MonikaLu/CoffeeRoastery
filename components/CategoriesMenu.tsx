@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { MenuItemCategories } from "../types/MenuItemCategories";
 
-const NavigationMenu = () => {
+const CategoriesMenu = () => {
   const navItems: string[] = Object.values(MenuItemCategories);
 
   return (
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NavigationMenu;
+export default CategoriesMenu;
