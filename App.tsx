@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
-import OrderScreen from "./screens/OrderScreen";
+import MenuScreen from "./screens/MenuScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
@@ -14,7 +14,7 @@ export default function App() {
           component={HomeScreen}
           options={{ title: "Coffee Roastery" }}
         />
-        <Stack.Screen name="Menu" component={OrderScreen} />
+        <Stack.Screen name="Menu" component={MenuScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import NavigationMenu from "../components/NavigationMenu";
 import CoffeeMenu from "../components/CoffeeMenu";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/rootStack";
 
 const OrderScreen = () => {
   return (
