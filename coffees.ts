@@ -62,5 +62,17 @@ const MenuItemItems: IMenuItem[] = [
     price: 25,
     type: MenuItemCategories.HOT_DRINKS,
   },
+  {
+    name: "Iced Cappuccino",
+    coverUrl: require("./assets/iced_cappuccino.png"),
+    price: 25,
+    type: MenuItemCategories.COLD_DRINKS,
+  },
+  {
+    name: "Frappuccino",
+    coverUrl: require("./assets/caramel_frappuccino.png"),
+    price: 25,
+    type: MenuItemCategories.COLD_DRINKS,
+  },
 ];
 export default MenuItemItems;
