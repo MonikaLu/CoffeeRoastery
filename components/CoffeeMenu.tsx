@@ -13,8 +13,8 @@ const CoffeeMenu = () => {
     >
       {menuItems.map((item, index) => (
         <View style={styles.coffeeContainer} key={index}>
-          <Image source={item.imageUrl} style={styles.coffeePicture} />
-          <Text>{item.title}</Text>
+          <Image source={item.coverUrl} style={styles.coffeePicture} />
+          <Text>{item.name}</Text>
           <Text>{item.price} Kr</Text>
         </View>
       ))}

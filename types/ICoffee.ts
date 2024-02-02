@@ -1,8 +1,9 @@
-import { CoffeTypes } from "./coffeeTypes";
+import { Image } from "react-native";
+import { CoffeeTypes } from "./coffeeTypes";
 
-export interface ICoffe {
+export interface ICoffee {
   price: number;
   name: string;
-  type: CoffeTypes;
-  coverUrl: string;
+  type: CoffeeTypes;
+  coverUrl: number;
 }
