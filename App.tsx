@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import OrderScreen from "./screens/OrderScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,11 +14,10 @@ export default function App() {
           component={HomeScreen}
           options={{ title: "Coffee Roastery" }}
         />
-        <Stack.Screen name="Order" component={OrderScreen} />
+        <Stack.Screen name="Menu" component={OrderScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
-  s;
 }
 const styles = StyleSheet.create({
   container: {

@@ -1,8 +1,19 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 const PlaceholderImage = require("./../assets/logo.png");
 import Button from "../components/Button";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../types/rootStack";
 
-const HomeScreen = ({ navigation }) => {
+type HomeScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Home"
+>;
+
+interface ScreenProps {
+  navigation: HomeScreenNavigationProp;
+}
+
+const HomeScreen = ({ navigation }: ScreenProps) => {
   return (
     <View style={styles.container}>
       <View>
@@ -11,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
       <Text style={{ color: "#000000" }}>Coffee Roastery</Text>
       <Button
         label="Let's coffee!"
-        onPress={() => navigation.navigate("Order")}
+        onPress={() => navigation.navigate("Menu")}
       />
     </View>
   );
