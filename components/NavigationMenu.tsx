@@ -6,16 +6,10 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
+import { MenuItemCategories } from "../types/MenuItemCategories";
 
 const NavigationMenu = () => {
-  const navItems = [
-    "Deals",
-    "Hot Drinks",
-    "Cold Drinks",
-    "Lunch",
-    "Milkshakes",
-    "Smoothie",
-  ];
+  const navItems: string[] = Object.values(MenuItemCategories);
 
   return (
     <View style={styles.navContainer}>
