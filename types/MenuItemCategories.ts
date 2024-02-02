@@ -1,4 +1,4 @@
-export enum CoffeeTypes {
+export enum MenuItemCategories {
   DEALS = "DEALS",
   HOT_DRINKS = "HOT DRINKS",
   COLD_DRINKS = "COLD DRINKS",
