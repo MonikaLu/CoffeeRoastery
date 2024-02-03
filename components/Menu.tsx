@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
 import { MenuItemCategories } from "../enums/MenuItemCategories";
 import { IMenuItem } from "../interfaces/IMenuItem";
@@ -16,6 +16,9 @@ const Menu = ({ selectedCategory }: MenuProps) => {
     AllMenuItems.filter((item) => item.type === category)
   );
 
+  const [scrollToIndex, setScrollToIndex] = useState(0);
+
+  const scrollRef = useRef<ScrollView>(null);
   useEffect(() => {
     console.log(selectedCategory);
     // setMenuItems
@@ -26,19 +29,39 @@ const Menu = ({ selectedCategory }: MenuProps) => {
     // );
   }, [selectedCategory]);
 
+  const [groupHeights, setGroupHeights] = useState<number[]>([]);
+
+  useEffect(() => {
+    const index = menuCategories.indexOf(selectedCategory);
+    const offset = groupHeights
+      .slice(0, index)
+      .reduce((acc, height) => acc + height, 0);
+    scrollRef.current?.scrollTo({ y: offset, animated: true });
+  }, [selectedCategory, groupHeights]);
+
   return (
-    <ScrollView>
+    <ScrollView ref={scrollRef}>
       {groups.map((items, index) => (
-        <View key={index}>
+        <View
+          key={index}
+          onLayout={(event) => {
+            const { height } = event.nativeEvent.layout;
+            setGroupHeights((prevHeights) => {
+              const newHeights = [...prevHeights];
+              newHeights[index] = height;
+              return newHeights;
+            });
+          }}
+        >
           <Text>{items[0]?.type}</Text>
-          <View style={styles.itemContainer}>
+          <View style={styles.groupContainer}>
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={true}
               style={styles.scrollView}
             >
               {items.map((item, index) => (
-                <View key={index}>
+                <View key={index} style={styles.itemContainer}>
                   <Image source={item.coverUrl} style={styles.itemPicture} />
                   <Text>{item.name}</Text>
                   <Text>{item.price} Kr</Text>
@@ -59,15 +82,24 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   itemPicture: {
-    width: 150,
-    height: 150,
+    width: 100,
+    height: 100,
     borderRadius: 50,
   },
-  itemContainer: {
+  groupContainer: {
     margin: 10,
     alignItems: "center",
     flexDirection: "row",
     minHeight: 100,
+  },
+  itemContainer: {
+    borderStyle: "solid",
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 50,
+    height: 102,
+    width: 102,
+    margin: 5,
   },
 });
 
