@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
-import coffeeItems from "../coffees";
 import { MenuItemCategories } from "../types/MenuItemCategories";
 import { IMenuItem } from "../types/IMenuItem";
+import AllMenuItems from "../AllMenuItems";
 
-interface CoffeeMenuProps {
+interface MenuProps {
   selectedCategory: MenuItemCategories;
 }
 
-const CoffeeMenu = ({ selectedCategory }: CoffeeMenuProps) => {
-  const [menuItems, setMenuItems] = useState<IMenuItem[]>(coffeeItems);
+const Menu = ({ selectedCategory }: MenuProps) => {
+  const [menuItems, setMenuItems] = useState<IMenuItem[]>(AllMenuItems);
 
   useEffect(() => {
-    setMenuItems(
-      coffeeItems
-        .filter((item) => item.type == selectedCategory)
-        .map((filteredItems) => filteredItems)
-    );
+    if (selectedCategory === MenuItemCategories.ALL) {
+      setMenuItems(AllMenuItems);
+    } else {
+      setMenuItems(
+        AllMenuItems.filter((item) => item.type == selectedCategory).map(
+          (filteredItems) => filteredItems
+        )
+      );
+    }
   }, [selectedCategory]);
 
   return (
@@ -26,8 +30,8 @@ const CoffeeMenu = ({ selectedCategory }: CoffeeMenuProps) => {
       style={styles.listView}
     >
       {menuItems.map((item, index) => (
-        <View style={styles.coffeeContainer} key={index}>
-          <Image source={item.coverUrl} style={styles.coffeePicture} />
+        <View style={styles.itemsContainer} key={index}>
+          <Image source={item.coverUrl} style={styles.itemPicture} />
           <Text>{item.name}</Text>
           <Text>{item.price} Kr</Text>
         </View>
@@ -41,15 +45,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
   },
-  coffeePicture: {
+  itemPicture: {
     width: 200,
     height: 200,
     borderRadius: 50,
   },
-  coffeeContainer: {
+  itemsContainer: {
     margin: 10,
     alignItems: "center",
   },
 });
 
-export default CoffeeMenu;
+export default Menu;

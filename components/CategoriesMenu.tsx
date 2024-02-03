@@ -12,7 +12,7 @@ interface CategoriesMenuProps {
   setSelectedCategory: (string: MenuItemCategories) => void;
 }
 
-const CategoriesMenu = (props: CategoriesMenuProps) => {
+const CategoriesMenu = ({ setSelectedCategory }: CategoriesMenuProps) => {
   const navItems: MenuItemCategories[] = Object.values(MenuItemCategories);
 
   return (
@@ -21,7 +21,7 @@ const CategoriesMenu = (props: CategoriesMenuProps) => {
         {navItems.map((item, index) => (
           <TouchableOpacity
             style={styles.navItem}
-            onPress={() => props.setSelectedCategory(item)}
+            onPress={() => setSelectedCategory(item)}
             key={index}
           >
             <Text style={styles.navText}>{item}</Text>

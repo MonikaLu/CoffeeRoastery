@@ -1,7 +1,7 @@
 import { IMenuItem } from "./types/IMenuItem";
 import { MenuItemCategories } from "./types/MenuItemCategories";
 
-const MenuItemItems: IMenuItem[] = [
+const AllMenuItems: IMenuItem[] = [
   {
     name: "Affogato",
     coverUrl: require("./assets/affogato.png"),
@@ -75,4 +75,4 @@ const MenuItemItems: IMenuItem[] = [
     type: MenuItemCategories.COLD_DRINKS,
   },
 ];
-export default MenuItemItems;
+export default AllMenuItems;
