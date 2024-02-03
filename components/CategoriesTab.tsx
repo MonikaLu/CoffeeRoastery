@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import { MenuItemCategories } from "../types/MenuItemCategories";
 
-interface CategoriesMenuProps {
+interface CategoriesTabProps {
   setSelectedCategory: (string: MenuItemCategories) => void;
 }
 
-const CategoriesMenu = ({ setSelectedCategory }: CategoriesMenuProps) => {
+const CategoriesTab = ({ setSelectedCategory }: CategoriesTabProps) => {
   const navItems: MenuItemCategories[] = Object.values(MenuItemCategories);
 
   return (
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoriesMenu;
+export default CategoriesTab;

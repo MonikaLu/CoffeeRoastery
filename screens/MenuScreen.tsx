@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native";
-import CategoriesMenu from "../components/CategoriesMenu";
-import CoffeeMenu from "../components/CoffeeMenu";
+import CategoriesTab from "../components/CategoriesTab";
+import Menu from "../components/Menu";
 import { useEffect, useState } from "react";
 import { MenuItemCategories } from "../types/MenuItemCategories";
 
@@ -11,8 +11,8 @@ const MenuScreen = () => {
 
   return (
     <View style={styles.orderContainer}>
-      <CategoriesMenu setSelectedCategory={setSelectedCategory} />
-      <CoffeeMenu selectedCategory={selectedCategory} />
+      <CategoriesTab setSelectedCategory={setSelectedCategory} />
+      <Menu selectedCategory={selectedCategory} />
     </View>
   );
 };
