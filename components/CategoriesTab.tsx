@@ -9,13 +9,17 @@ import {
 import { MenuItemCategories } from "../enums/MenuItemCategories";
 
 interface CategoriesTabProps {
-  setSelectedCategory: (string: MenuItemCategories) => void;
+  setSelectedCategory: (category: MenuItemCategories) => void;
+  selectedCategory: MenuItemCategories;
 }
 
 export const menuCategories: MenuItemCategories[] =
   Object.values(MenuItemCategories);
 
-const CategoriesTab = ({ setSelectedCategory }: CategoriesTabProps) => {
+const CategoriesTab = ({
+  setSelectedCategory,
+  selectedCategory,
+}: CategoriesTabProps) => {
   return (
     <View style={styles.navContainer}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -27,7 +31,16 @@ const CategoriesTab = ({ setSelectedCategory }: CategoriesTabProps) => {
             }}
             key={index}
           >
-            <Text style={styles.navText}>{item}</Text>
+            <Text
+              style={[
+                styles.navText,
+                item === selectedCategory
+                  ? styles.selectedNavItem
+                  : styles.navText,
+              ]}
+            >
+              {item}
+            </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -56,6 +69,14 @@ const styles = StyleSheet.create({
   navText: {
     color: "#422006",
     fontSize: 16,
+    fontWeight: "100",
+  },
+  selectedNavItem: {
+    fontWeight: "300",
+    textDecorationLine: "underline",
+    textDecorationColor: "black",
+    textDecorationStyle: "solid",
+    color: "#000000",
   },
 });
 

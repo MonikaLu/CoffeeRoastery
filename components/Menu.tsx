@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
 import { MenuItemCategories } from "../enums/MenuItemCategories";
-import { IMenuItem } from "../interfaces/IMenuItem";
 import AllMenuItems from "./../data/AllMenuItems";
 import { menuCategories } from "./CategoriesTab";
 
@@ -10,13 +9,9 @@ interface MenuProps {
 }
 
 const Menu = ({ selectedCategory }: MenuProps) => {
-  // const [menuItems, setMenuItems] = useState<IMenuItem[]>(AllMenuItems);
-
   const groups = menuCategories.map((category) =>
     AllMenuItems.filter((item) => item.type === category)
   );
-
-  const [scrollToIndex, setScrollToIndex] = useState(0);
 
   const scrollRef = useRef<ScrollView>(null);
   useEffect(() => {

@@ -11,7 +11,10 @@ const MenuScreen = () => {
 
   return (
     <View style={styles.orderContainer}>
-      <CategoriesTab setSelectedCategory={setSelectedCategory} />
+      <CategoriesTab
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
+      />
       <Menu selectedCategory={selectedCategory} />
     </View>
   );
