@@ -21,12 +21,6 @@ const Menu = ({ selectedCategory }: MenuProps) => {
   const scrollRef = useRef<ScrollView>(null);
   useEffect(() => {
     console.log(selectedCategory);
-    // setMenuItems
-    // setMenuItems(
-    //   AllMenuItems.filter((item) => item.type == selectedCategory).map(
-    //     (filteredItems) => filteredItems
-    //   )
-    // );
   }, [selectedCategory]);
 
   const [groupHeights, setGroupHeights] = useState<number[]>([]);
@@ -43,6 +37,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
     <ScrollView ref={scrollRef}>
       {groups.map((items, index) => (
         <View
+          style={styles.container}
           key={index}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
@@ -53,7 +48,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
             });
           }}
         >
-          <Text>{items[0]?.type}</Text>
+          <Text style={styles.groupTitle}>{items[0]?.type}</Text>
           <View style={styles.groupContainer}>
             <ScrollView
               horizontal
@@ -82,24 +77,28 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   itemPicture: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
     borderRadius: 50,
+    borderColor: "gray",
+    borderWidth: 1,
   },
   groupContainer: {
-    margin: 10,
     alignItems: "center",
     flexDirection: "row",
-    minHeight: 100,
+    minHeight: 150,
+    margin: 10,
   },
   itemContainer: {
-    borderStyle: "solid",
-    borderColor: "black",
-    borderWidth: 1,
     borderRadius: 50,
-    height: 102,
-    width: 102,
-    margin: 5,
+    height: 202,
+    width: 202,
+  },
+  container: {
+    margin: 10,
+  },
+  groupTitle: {
+    fontSize: 15,
   },
 });
 
