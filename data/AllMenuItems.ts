@@ -1,5 +1,5 @@
-import { IMenuItem } from "./../types/IMenuItem";
-import { MenuItemCategories } from "./../types/MenuItemCategories";
+import { IMenuItem } from "../interfaces/IMenuItem";
+import { MenuItemCategories } from "../enums/MenuItemCategories";
 
 const AllMenuItems: IMenuItem[] = [
   {

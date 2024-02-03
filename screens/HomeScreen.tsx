@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 const PlaceholderImage = require("./../assets/logo.png");
 import Button from "../components/Button";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/rootStack";
+import { RootStackParamList } from "../interfaces/rootStack";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,

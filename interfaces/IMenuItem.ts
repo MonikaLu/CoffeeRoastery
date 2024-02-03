@@ -1,4 +1,4 @@
-import { MenuItemCategories } from "./MenuItemCategories";
+import { MenuItemCategories } from "./../enums/MenuItemCategories";
 
 export interface IMenuItem {
   price: number;

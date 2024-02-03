@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
-import { MenuItemCategories } from "../types/MenuItemCategories";
-import { IMenuItem } from "../types/IMenuItem";
+import { MenuItemCategories } from "../enums/MenuItemCategories";
+import { IMenuItem } from "../interfaces/IMenuItem";
 import AllMenuItems from "./../data/AllMenuItems";
 
 interface MenuProps {
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   itemPicture: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
     borderRadius: 50,
   },
   itemsContainer: {
