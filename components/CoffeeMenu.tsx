@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
 import { MenuItemCategories } from "../types/MenuItemCategories";
 import { IMenuItem } from "../types/IMenuItem";
-import AllMenuItems from "../AllMenuItems";
+import AllMenuItems from "./../data/AllMenuItems";
 
 interface MenuProps {
   selectedCategory: MenuItemCategories;
