@@ -22,7 +22,9 @@ const CategoriesTab = ({ setSelectedCategory }: CategoriesTabProps) => {
         {menuCategories.map((item, index) => (
           <TouchableOpacity
             style={styles.navItem}
-            onPress={() => setSelectedCategory(item)}
+            onPress={() => {
+              setSelectedCategory(item);
+            }}
             key={index}
           >
             <Text style={styles.navText}>{item}</Text>

@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   itemPicture: {
-    width: 150,
-    height: 150,
-    borderRadius: 50,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     borderColor: "gray",
     borderWidth: 1,
   },
@@ -91,8 +91,10 @@ const styles = StyleSheet.create({
   },
   itemContainer: {
     borderRadius: 50,
-    height: 202,
-    width: 202,
+    height: 190,
+    width: 150,
+    justifyContent: "center",
+    alignItems: "center",
   },
   container: {
     margin: 10,
