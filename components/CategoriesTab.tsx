@@ -12,13 +12,14 @@ interface CategoriesTabProps {
   setSelectedCategory: (string: MenuItemCategories) => void;
 }
 
-const CategoriesTab = ({ setSelectedCategory }: CategoriesTabProps) => {
-  const navItems: MenuItemCategories[] = Object.values(MenuItemCategories);
+export const menuCategories: MenuItemCategories[] =
+  Object.values(MenuItemCategories);
 
+const CategoriesTab = ({ setSelectedCategory }: CategoriesTabProps) => {
   return (
     <View style={styles.navContainer}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {navItems.map((item, index) => (
+        {menuCategories.map((item, index) => (
           <TouchableOpacity
             style={styles.navItem}
             onPress={() => setSelectedCategory(item)}

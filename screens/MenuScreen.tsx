@@ -1,12 +1,12 @@
 import { StyleSheet, View } from "react-native";
 import CategoriesTab from "../components/CategoriesTab";
 import Menu from "../components/Menu";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MenuItemCategories } from "../enums/MenuItemCategories";
 
 const MenuScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState<MenuItemCategories>(
-    MenuItemCategories.ALL
+    MenuItemCategories.HOT_COFFEES
   );
 
   return (
