@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
 import coffeeItems from "../coffees";
+import { MenuItemCategories } from "../types/MenuItemCategories";
+import { IMenuItem } from "../types/IMenuItem";
 
-const CoffeeMenu = () => {
-  const [menuItems, setCoffeeItems] = useState(coffeeItems);
+interface CoffeeMenuProps {
+  selectedCategory: MenuItemCategories;
+}
+
+const CoffeeMenu = ({ selectedCategory }: CoffeeMenuProps) => {
+  const [menuItems, setMenuItems] = useState<IMenuItem[]>(coffeeItems);
+
+  useEffect(() => {
+    setMenuItems(
+      coffeeItems
+        .filter((item) => item.type == selectedCategory)
+        .map((filteredItems) => filteredItems)
+    );
+  }, [selectedCategory]);
 
   return (
     <ScrollView

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -8,8 +8,12 @@ import {
 } from "react-native";
 import { MenuItemCategories } from "../types/MenuItemCategories";
 
-const CategoriesMenu = () => {
-  const navItems: string[] = Object.values(MenuItemCategories);
+interface CategoriesMenuProps {
+  setSelectedCategory: (string: MenuItemCategories) => void;
+}
+
+const CategoriesMenu = (props: CategoriesMenuProps) => {
+  const navItems: MenuItemCategories[] = Object.values(MenuItemCategories);
 
   return (
     <View style={styles.navContainer}>
@@ -17,7 +21,7 @@ const CategoriesMenu = () => {
         {navItems.map((item, index) => (
           <TouchableOpacity
             style={styles.navItem}
-            onPress={() => console.log(item)}
+            onPress={() => props.setSelectedCategory(item)}
             key={index}
           >
             <Text style={styles.navText}>{item}</Text>

@@ -5,4 +5,5 @@ export enum MenuItemCategories {
   MILKSHAKES = "MILKSHAKES",
   SMOOTHIES = "SMOOTHIES",
   LUNCH = "LUNCH",
+  ALL = "ALL",
 }
