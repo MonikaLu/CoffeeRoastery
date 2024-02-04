@@ -23,7 +23,7 @@ export enum MilkOptions {
 }
 
 export enum OtherOptions {
-  EXTRA_SHOT = "Extra Shop",
+  EXTRA_SHOT = "Extra Espresso Shot",
   VANILLA_SYRUP = "Vanilla Syrup",
   SUGARFREE_VANILLA_SYRUP = "Sugarfree Vanilla Syrup",
   CARAMEL_SAUCE = "Caramel Sauce",

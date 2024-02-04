@@ -1,4 +1,4 @@
-import { DrinkSize } from "./../enums";
+import { DrinkSize, MilkOptions, OtherOptions } from "./../enums";
 import { IMenuItem } from "../interfaces/IMenuItem";
 import { MenuItemCategories } from "../enums";
 
@@ -9,6 +9,12 @@ const AllMenuItems: IMenuItem[] = [
     price: 30,
     type: MenuItemCategories.HOT_COFFEES,
     availableSizes: [DrinkSize.SMALL, DrinkSize.MEDIUM, DrinkSize.LARGE],
+    milkOptions: [
+      MilkOptions.LACTOSE_FREE_MILK,
+      MilkOptions.WHOLE_MILK,
+      MilkOptions.OATMILK,
+    ],
+    otherOptions: [OtherOptions.EXTRA_SHOT, OtherOptions.DECAF],
   },
   {
     name: "Americano",

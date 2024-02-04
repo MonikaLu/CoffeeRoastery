@@ -1,5 +1,13 @@
 import { AntDesign } from "@expo/vector-icons";
-import { Image, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Modal,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
 
 interface ModalProps {
@@ -35,15 +43,23 @@ const PopUpModal = ({
               style={styles.itemPicture}
               source={selectedItem.coverUrl}
             ></Image>
-            <Text style={styles.textStyle}>{selectedItem?.name}</Text>
+            <Text style={styles.titleStyle}>{selectedItem?.name}</Text>
             <View style={styles.detailsList}>
-              <Text style={styles.bodyText}>{selectedItem?.price} Kr</Text>
+              <View style={styles.sizeButtonsContainer}>
+                {selectedItem.availableSizes?.map((size, index) => (
+                  <Pressable style={styles.button} key={index}>
+                    <Text style={styles.buttonText}>{size}</Text>
+                  </Pressable>
+                ))}
+              </View>
             </View>
             <Pressable
               style={styles.addButton}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.buttonText}>Add to Cart</Text>
+              <Text style={styles.buttonText}>
+                Add to Cart {selectedItem.price} Kr
+              </Text>
             </Pressable>
           </View>
         </View>
@@ -75,23 +91,38 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: 50,
+    rowGap: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   itemPicture: {
-    width: "60%",
+    width: "85%",
     height: "60%",
     borderColor: "gray",
     borderWidth: 1,
   },
   detailsList: {
-    alignSelf: "flex-end",
-    paddingLeft: 20,
-    paddingRight: 20,
+    width: "100%",
+  },
+  sizeButtonsContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    columnGap: 10,
+    width: "100%",
+  },
+  button: {
+    backgroundColor: "#fef6e4",
+    borderRadius: 5,
+    padding: 10,
+    borderColor: "#001858",
+    borderStyle: "solid",
+    borderWidth: 1,
   },
   addButton: {
     backgroundColor: "#f3d2c1",
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 10,
+    width: "90%",
   },
   closeButton: {
     alignSelf: "flex-end",
@@ -99,11 +130,11 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     padding: 10,
   },
+
   // Text
-  textStyle: {
+  titleStyle: {
     color: "black",
     fontWeight: "bold",
-    textAlign: "center",
     fontSize: 20,
   },
   bodyText: {
