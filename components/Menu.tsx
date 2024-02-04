@@ -40,7 +40,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
       {groups.map((items, index) => (
         <View
           style={styles.container}
-          key={index}
+          key={index + index}
           onLayout={(event) => {
             const { height } = event.nativeEvent.layout;
             setGroupHeights((prevHeights) => {
@@ -64,6 +64,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
                       modalVisible={modalVisible}
                       setModalVisible={setModalVisible}
                       selectedItem={selectedItem}
+                      key={index + selectedItem.name}
                     ></PopUpModal>
                   )}
                   <Pressable

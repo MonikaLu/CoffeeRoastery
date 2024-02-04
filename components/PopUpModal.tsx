@@ -37,8 +37,14 @@ const PopUpModal = ({
             ></Image>
             <Text style={styles.textStyle}>{selectedItem?.name}</Text>
             <View style={styles.detailsList}>
-              <Text style={styles.bodyText}>{selectedItem?.price}</Text>
+              <Text style={styles.bodyText}>{selectedItem?.price} Kr</Text>
             </View>
+            <Pressable
+              style={styles.addButton}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.buttonText}>Add to Cart</Text>
+            </Pressable>
           </View>
         </View>
       </View>
@@ -48,7 +54,7 @@ const PopUpModal = ({
 
 const styles = StyleSheet.create({
   modalView: {
-    backgroundColor: "white",
+    backgroundColor: "#fef6e4",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -65,16 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  textStyle: {
-    color: "black",
-    fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 20,
-  },
-  closeButton: {
-    alignSelf: "flex-end",
-    margin: 10,
-  },
   contentContainer: {
     flexDirection: "column",
     justifyContent: "center",
@@ -87,12 +83,37 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
   },
-  bodyText: {
-    color: "black",
-    fontSize: 20,
-  },
   detailsList: {
     alignSelf: "flex-end",
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  addButton: {
+    backgroundColor: "#f3d2c1",
+    borderRadius: 10,
+    padding: 10,
+  },
+  closeButton: {
+    alignSelf: "flex-end",
+    margin: 10,
+    borderRadius: 40,
+    padding: 10,
+  },
+  // Text
+  textStyle: {
+    color: "black",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 20,
+  },
+  bodyText: {
+    color: "#001858",
+    fontSize: 20,
+  },
+  buttonText: {
+    color: "#001858",
+    fontSize: 15,
+    fontWeight: "600",
   },
 });
 
