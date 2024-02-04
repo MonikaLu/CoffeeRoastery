@@ -1,31 +1,45 @@
-import { useState } from "react";
-import { Alert, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { Image, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { IMenuItem } from "../interfaces/IMenuItem";
 
 interface ModalProps {
   modalVisible: boolean;
   setModalVisible: (status: boolean) => void;
+  selectedItem: IMenuItem;
 }
 
-const PopUpModal = ({ modalVisible, setModalVisible }: ModalProps) => {
+const PopUpModal = ({
+  modalVisible,
+  setModalVisible,
+  selectedItem,
+}: ModalProps) => {
   return (
     <Modal
-      animationType="fade"
+      animationType="slide"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Pressable
-            style={[styles.button, styles.buttonClose]}
+            style={styles.closeButton}
             onPress={() => setModalVisible(!modalVisible)}
           >
-            <Text style={styles.textStyle}>Close</Text>
+            <AntDesign name="closecircle" size={24} color="black" />
           </Pressable>
-          <Text>Hello World!</Text>
+          <View style={styles.contentContainer}>
+            <Image
+              style={styles.itemPicture}
+              source={selectedItem.coverUrl}
+            ></Image>
+            <Text style={styles.textStyle}>{selectedItem?.name}</Text>
+            <View style={styles.detailsList}>
+              <Text style={styles.bodyText}>{selectedItem?.price}</Text>
+            </View>
+          </View>
         </View>
       </View>
     </Modal>
@@ -34,36 +48,51 @@ const PopUpModal = ({ modalVisible, setModalVisible }: ModalProps) => {
 
 const styles = StyleSheet.create({
   modalView: {
-    margin: 10,
     backgroundColor: "white",
-    padding: 35,
-    alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
-    shadowRadius: 4,
     elevation: 5,
+    flexDirection: "column",
+    width: "90%",
+    height: "90%",
   },
   centeredView: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
-  },
-  button: {
-    padding: 10,
-    elevation: 2,
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
   },
   textStyle: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
     textAlign: "center",
+    fontSize: 20,
+  },
+  closeButton: {
+    alignSelf: "flex-end",
+    margin: 10,
+  },
+  contentContainer: {
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 50,
+  },
+  itemPicture: {
+    width: "60%",
+    height: "60%",
+    borderColor: "gray",
+    borderWidth: 1,
+  },
+  bodyText: {
+    color: "black",
+    fontSize: 20,
+  },
+  detailsList: {
+    alignSelf: "flex-end",
   },
 });
 

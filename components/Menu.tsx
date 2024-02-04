@@ -14,6 +14,7 @@ import AllMenuItems from "./../data/AllMenuItems";
 import { menuCategories } from "./CategoriesTab";
 import { AntDesign } from "@expo/vector-icons";
 import PopUpModal from "./PopUpModal";
+import { IMenuItem } from "../interfaces/IMenuItem";
 interface MenuProps {
   selectedCategory: MenuItemCategories;
 }
@@ -24,6 +25,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
   const scrollRef = useRef<ScrollView>(null);
   const [groupHeights, setGroupHeights] = useState<number[]>([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<IMenuItem>();
 
   useEffect(() => {
     const index = menuCategories.indexOf(selectedCategory);
@@ -57,14 +59,20 @@ const Menu = ({ selectedCategory }: MenuProps) => {
             >
               {items.map((item, index) => (
                 <>
-                  <PopUpModal
-                    modalVisible={modalVisible}
-                    setModalVisible={setModalVisible}
-                  ></PopUpModal>
+                  {selectedItem && (
+                    <PopUpModal
+                      modalVisible={modalVisible}
+                      setModalVisible={setModalVisible}
+                      selectedItem={selectedItem}
+                    ></PopUpModal>
+                  )}
                   <Pressable
                     key={index}
                     style={styles.itemContainer}
-                    onPress={() => setModalVisible(true)}
+                    onPress={() => {
+                      setModalVisible(true);
+                      setSelectedItem(item);
+                    }}
                   >
                     <View style={styles.imageContainer}>
                       <Image
