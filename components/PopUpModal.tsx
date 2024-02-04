@@ -9,6 +9,8 @@ import {
   View,
 } from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
+import { useState } from "react";
+import { DrinkSize } from "../enums";
 
 interface ModalProps {
   modalVisible: boolean;
@@ -21,6 +23,8 @@ const PopUpModal = ({
   setModalVisible,
   selectedItem,
 }: ModalProps) => {
+  const [selectedSize, setSelectedSize] = useState<DrinkSize>(DrinkSize.MEDIUM);
+
   return (
     <Modal
       animationType="slide"
@@ -47,7 +51,16 @@ const PopUpModal = ({
             <View style={styles.detailsList}>
               <View style={styles.sizeButtonsContainer}>
                 {selectedItem.availableSizes?.map((size, index) => (
-                  <Pressable style={styles.button} key={index}>
+                  <Pressable
+                    style={[
+                      styles.button,
+                      selectedSize === size
+                        ? styles.selectedButton
+                        : styles.button,
+                    ]}
+                    onPress={() => setSelectedSize(size)}
+                    key={index}
+                  >
                     <Text style={styles.buttonText}>{size}</Text>
                   </Pressable>
                 ))}
@@ -129,6 +142,9 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 40,
     padding: 10,
+  },
+  selectedButton: {
+    backgroundColor: "#f3d2c1",
   },
 
   // Text
