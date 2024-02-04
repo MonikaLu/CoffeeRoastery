@@ -1,24 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  ScrollView,
+  Pressable,
+  Modal,
+  Alert,
+} from "react-native";
 import { MenuItemCategories } from "../enums/MenuItemCategories";
 import AllMenuItems from "./../data/AllMenuItems";
 import { menuCategories } from "./CategoriesTab";
 import { AntDesign } from "@expo/vector-icons";
+import PopUpModal from "./PopUpModal";
 interface MenuProps {
   selectedCategory: MenuItemCategories;
 }
-
+const groups = menuCategories.map((category) =>
+  AllMenuItems.filter((item) => item.type === category)
+);
 const Menu = ({ selectedCategory }: MenuProps) => {
-  const groups = menuCategories.map((category) =>
-    AllMenuItems.filter((item) => item.type === category)
-  );
-
   const scrollRef = useRef<ScrollView>(null);
-  useEffect(() => {
-    console.log(selectedCategory);
-  }, [selectedCategory]);
-
   const [groupHeights, setGroupHeights] = useState<number[]>([]);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const index = menuCategories.indexOf(selectedCategory);
@@ -51,19 +56,32 @@ const Menu = ({ selectedCategory }: MenuProps) => {
               style={styles.scrollView}
             >
               {items.map((item, index) => (
-                <View key={index} style={styles.itemContainer}>
-                  <View style={styles.imageContainer}>
-                    <Image source={item.coverUrl} style={styles.itemPicture} />
-                    <AntDesign
-                      name="pluscircle"
-                      size={30}
-                      color="black"
-                      style={styles.iconStyle}
-                    />
-                  </View>
-                  <Text>{item.name}</Text>
-                  <Text>{item.price} Kr</Text>
-                </View>
+                <>
+                  <PopUpModal
+                    modalVisible={modalVisible}
+                    setModalVisible={setModalVisible}
+                  ></PopUpModal>
+                  <Pressable
+                    key={index}
+                    style={styles.itemContainer}
+                    onPress={() => setModalVisible(true)}
+                  >
+                    <View style={styles.imageContainer}>
+                      <Image
+                        source={item.coverUrl}
+                        style={styles.itemPicture}
+                      />
+                      <AntDesign
+                        name="pluscircle"
+                        size={30}
+                        color="black"
+                        style={styles.iconStyle}
+                      />
+                    </View>
+                    <Text>{item.name}</Text>
+                    <Text>{item.price} Kr</Text>
+                  </Pressable>
+                </>
               ))}
             </ScrollView>
           </View>
