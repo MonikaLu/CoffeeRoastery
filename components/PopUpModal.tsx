@@ -9,8 +9,9 @@ import {
   View,
 } from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
-import { useState } from "react";
-import { DrinkSize } from "../enums";
+import { useEffect, useState } from "react";
+import { DrinkSize, MilkOptions } from "../enums";
+import ListItem from "./ListItem";
 
 interface ModalProps {
   modalVisible: boolean;
@@ -24,6 +25,9 @@ const PopUpModal = ({
   selectedItem,
 }: ModalProps) => {
   const [selectedSize, setSelectedSize] = useState<DrinkSize>(DrinkSize.MEDIUM);
+  const [selectedMilk, setSelectedMilk] = useState<MilkOptions>(
+    MilkOptions.WHOLE_MILK
+  );
 
   return (
     <Modal
@@ -36,45 +40,64 @@ const PopUpModal = ({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Pressable
-            style={styles.closeButton}
-            onPress={() => setModalVisible(!modalVisible)}
-          >
-            <AntDesign name="closecircle" size={24} color="black" />
-          </Pressable>
-          <View style={styles.contentContainer}>
-            <Image
-              style={styles.itemPicture}
-              source={selectedItem.coverUrl}
-            ></Image>
-            <Text style={styles.titleStyle}>{selectedItem?.name}</Text>
-            <View style={styles.detailsList}>
-              <View style={styles.sizeButtonsContainer}>
-                {selectedItem.availableSizes?.map((size, index) => (
-                  <Pressable
-                    style={[
-                      styles.button,
-                      selectedSize === size
-                        ? styles.selectedButton
-                        : styles.button,
-                    ]}
-                    onPress={() => setSelectedSize(size)}
-                    key={index}
-                  >
-                    <Text style={styles.buttonText}>{size}</Text>
-                  </Pressable>
-                ))}
-              </View>
-            </View>
+          <ScrollView showsVerticalScrollIndicator>
             <Pressable
-              style={styles.addButton}
+              style={styles.closeButton}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.buttonText}>
-                Add to Cart {selectedItem.price} Kr
-              </Text>
+              <AntDesign name="closecircle" size={24} color="black" />
             </Pressable>
-          </View>
+            <View style={styles.contentContainer}>
+              <Image
+                style={styles.itemPicture}
+                source={selectedItem.coverUrl}
+              ></Image>
+              <Text style={styles.titleStyle}>{selectedItem?.name}</Text>
+              <View style={styles.detailsList}>
+                <View style={styles.sizeButtonsContainer}>
+                  {selectedItem.availableSizes?.map((size, index) => (
+                    <Pressable
+                      style={[
+                        styles.button,
+                        selectedSize === size
+                          ? styles.selectedButton
+                          : styles.button,
+                      ]}
+                      onPress={() => setSelectedSize(size)}
+                      key={index}
+                    >
+                      <Text style={styles.buttonText}>{size}</Text>
+                    </Pressable>
+                  ))}
+                </View>
+                <View style={styles.listStyle}>
+                  <Text style={styles.titleStyle}>Milk Options</Text>
+                  {selectedItem.milkOptions?.map((milk, index) => (
+                    <ListItem
+                      title={milk}
+                      key={index}
+                      icon={
+                        milk === selectedMilk
+                          ? "radio-button-on-outline"
+                          : "radio-button-off-outline"
+                      }
+                      iconColor="black"
+                      iconSize={12}
+                      itemOnClick={() => setSelectedMilk(milk)}
+                    ></ListItem>
+                  ))}
+                </View>
+              </View>
+              <Pressable
+                style={styles.addButton}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <Text style={styles.buttonText}>
+                  Add to Cart {selectedItem.price} Kr
+                </Text>
+              </Pressable>
+            </View>
+          </ScrollView>
         </View>
       </View>
     </Modal>
@@ -109,13 +132,17 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   itemPicture: {
-    width: "85%",
-    height: "60%",
+    width: 350,
+    height: 350,
     borderColor: "gray",
     borderWidth: 1,
   },
   detailsList: {
     width: "100%",
+  },
+  listStyle: {
+    marginTop: 10,
+    rowGap: 5,
   },
   sizeButtonsContainer: {
     flexDirection: "row",
@@ -136,6 +163,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     width: "90%",
+    marginTop: 30,
+    marginBottom: 30,
   },
   closeButton: {
     alignSelf: "flex-end",
