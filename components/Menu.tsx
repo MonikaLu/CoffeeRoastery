@@ -3,7 +3,7 @@ import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
 import { MenuItemCategories } from "../enums/MenuItemCategories";
 import AllMenuItems from "./../data/AllMenuItems";
 import { menuCategories } from "./CategoriesTab";
-
+import { AntDesign } from "@expo/vector-icons";
 interface MenuProps {
   selectedCategory: MenuItemCategories;
 }
@@ -52,7 +52,15 @@ const Menu = ({ selectedCategory }: MenuProps) => {
             >
               {items.map((item, index) => (
                 <View key={index} style={styles.itemContainer}>
-                  <Image source={item.coverUrl} style={styles.itemPicture} />
+                  <View style={styles.imageContainer}>
+                    <Image source={item.coverUrl} style={styles.itemPicture} />
+                    <AntDesign
+                      name="pluscircle"
+                      size={30}
+                      color="black"
+                      style={styles.iconStyle}
+                    />
+                  </View>
                   <Text>{item.name}</Text>
                   <Text>{item.price} Kr</Text>
                 </View>
@@ -95,7 +103,20 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   groupTitle: {
-    fontSize: 15,
+    color: "#422006",
+    fontSize: 20,
+    fontWeight: "300",
+  },
+  imageContainer: {
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  iconStyle: {
+    zIndex: 1,
+    right: 5,
+    bottom: 5,
+    position: "absolute",
   },
 });
 

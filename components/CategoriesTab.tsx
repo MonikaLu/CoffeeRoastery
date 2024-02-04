@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
   },
   selectedNavItem: {
     fontWeight: "300",
-    textDecorationLine: "underline",
     textDecorationColor: "black",
     textDecorationStyle: "solid",
     color: "#000000",
