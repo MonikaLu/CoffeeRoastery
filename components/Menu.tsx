@@ -9,7 +9,7 @@ import {
   Modal,
   Alert,
 } from "react-native";
-import { MenuItemCategories } from "../enums/MenuItemCategories";
+import { MenuItemCategories } from "./../enums";
 import AllMenuItems from "./../data/AllMenuItems";
 import { menuCategories } from "./CategoriesTab";
 import { AntDesign } from "@expo/vector-icons";

@@ -6,7 +6,7 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-import { MenuItemCategories } from "../enums/MenuItemCategories";
+import { MenuItemCategories } from "./../enums";
 
 interface CategoriesTabProps {
   setSelectedCategory: (category: MenuItemCategories) => void;

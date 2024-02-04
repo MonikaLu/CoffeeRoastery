@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 import CategoriesTab from "../components/CategoriesTab";
 import Menu from "../components/Menu";
 import { useState } from "react";
-import { MenuItemCategories } from "../enums/MenuItemCategories";
+import { MenuItemCategories } from "./../enums";
 
 const MenuScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState<MenuItemCategories>(
