@@ -1,26 +1,28 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Icon } from "@expo/vector-icons/build/createIconSet";
+import { AntDesign } from "@expo/vector-icons";
 
-interface listItemProps {
+interface ListItemProps {
   title: string;
   itemOnClick: () => void;
-  icon: keyof typeof Ionicons.glyphMap;
+  IconComponent: React.ElementType; // Use React.ElementType for component type
+  iconName: React.ComponentProps<typeof Ionicons | typeof AntDesign>["name"]; // Use Ionicons as a base type for icon names
   iconSize?: number;
   iconColor?: string;
 }
 
-const ListItem = ({
+const ListItem: React.FC<ListItemProps> = ({
   title,
   itemOnClick,
-  icon,
-  iconColor,
-  iconSize,
-}: listItemProps) => {
+  IconComponent,
+  iconName,
+  iconColor = "black", // Provide default value
+  iconSize = 24, // Provide default value
+}) => {
   return (
     <Pressable style={styles.itemContainer} onPress={itemOnClick}>
       <Text>{title}</Text>
-      <Ionicons name={icon} color={iconColor} size={iconSize} />
+      <IconComponent name={iconName} size={iconSize} color={iconColor} />
     </Pressable>
   );
 };

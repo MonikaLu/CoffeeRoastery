@@ -1,4 +1,4 @@
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import {
   Image,
   Modal,
@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
 import { useEffect, useState } from "react";
-import { DrinkSize, MilkOptions } from "../enums";
+import { DrinkSize, MilkOptions, OtherOptions } from "../enums";
 import ListItem from "./ListItem";
 
 interface ModalProps {
@@ -28,6 +28,8 @@ const PopUpModal = ({
   const [selectedMilk, setSelectedMilk] = useState<MilkOptions>(
     MilkOptions.WHOLE_MILK
   );
+  const [selectedOtherOption, setSelectedOtherOption] =
+    useState<OtherOptions>();
 
   return (
     <Modal
@@ -76,7 +78,8 @@ const PopUpModal = ({
                     <ListItem
                       title={milk}
                       key={index}
-                      icon={
+                      IconComponent={Ionicons}
+                      iconName={
                         milk === selectedMilk
                           ? "radio-button-on-outline"
                           : "radio-button-off-outline"
@@ -84,6 +87,24 @@ const PopUpModal = ({
                       iconColor="black"
                       iconSize={12}
                       itemOnClick={() => setSelectedMilk(milk)}
+                    ></ListItem>
+                  ))}
+                </View>
+                <View style={styles.listStyle}>
+                  <Text style={styles.titleStyle}>Other Options</Text>
+                  {selectedItem.otherOptions?.map((option, index) => (
+                    <ListItem
+                      title={option}
+                      key={index}
+                      IconComponent={AntDesign}
+                      iconName={
+                        option === selectedOtherOption
+                          ? "checkcircle"
+                          : "checkcircleo"
+                      }
+                      iconColor="black"
+                      iconSize={12}
+                      itemOnClick={() => setSelectedOtherOption(option)}
                     ></ListItem>
                   ))}
                 </View>
