@@ -23,32 +23,33 @@ const groups = menuCategories.map((category) =>
 );
 const Menu = ({ selectedCategory }: MenuProps) => {
   const scrollRef = useRef<ScrollView>(null);
-  const [groupHeights, setGroupHeights] = useState<number[]>([]);
+  const [categoryOffsets, setCategoryOffsets] = useState<{
+    [key: string]: number;
+  }>({});
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedItem, setSelectedItem] = useState<IMenuItem>();
 
+  const handleLayout = (category: string, event: any) => {
+    const { y } = event.nativeEvent.layout;
+    setCategoryOffsets((prevOffsets) => ({
+      ...prevOffsets,
+      [category]: y,
+    }));
+  };
   useEffect(() => {
-    const index = menuCategories.indexOf(selectedCategory);
-    const offset = groupHeights
-      .slice(0, index)
-      .reduce((acc, height) => acc + height, 0);
-    scrollRef.current?.scrollTo({ y: offset, animated: true });
-  }, [selectedCategory, groupHeights]);
+    if (selectedCategory in categoryOffsets) {
+      const y = categoryOffsets[selectedCategory];
+      scrollRef.current?.scrollTo({ y: y, animated: true });
+    }
+  }, [selectedCategory, categoryOffsets]);
 
   return (
     <ScrollView ref={scrollRef}>
       {groups.map((items, index) => (
         <View
           style={styles.container}
-          key={index + index}
-          onLayout={(event) => {
-            const { height } = event.nativeEvent.layout;
-            setGroupHeights((prevHeights) => {
-              const newHeights = [...prevHeights];
-              newHeights[index] = height;
-              return newHeights;
-            });
-          }}
+          key={menuCategories[index]}
+          onLayout={(event) => handleLayout(menuCategories[index], event)}
         >
           <Text style={styles.groupTitle}>{items[0]?.type}</Text>
           <View style={styles.groupContainer}>
@@ -58,14 +59,14 @@ const Menu = ({ selectedCategory }: MenuProps) => {
               style={styles.scrollView}
             >
               {items.map((item, index) => (
-                <View key={index}>
+                <View>
                   {selectedItem && (
                     <PopUpModal
                       modalVisible={modalVisible}
                       setModalVisible={setModalVisible}
                       selectedItem={selectedItem}
                       key={index + selectedItem.name}
-                    ></PopUpModal>
+                    />
                   )}
                   <Pressable
                     key={item.name}
@@ -96,11 +97,17 @@ const Menu = ({ selectedCategory }: MenuProps) => {
           </View>
         </View>
       ))}
+      <View style={styles.test}></View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  test: {
+    height: 450,
+    width: "100%",
+    backgroundColor: "black",
+  },
   scrollView: {
     flex: 1,
     flexDirection: "column",
