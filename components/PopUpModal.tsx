@@ -57,19 +57,20 @@ const PopUpModal = ({
               <Text style={styles.titleStyle}>{selectedItem?.name}</Text>
               <View style={styles.detailsList}>
                 <View style={styles.sizeButtonsContainer}>
-                  {selectedItem.availableSizes?.map((size, index) => (
-                    <Pressable
-                      style={[
-                        styles.button,
-                        selectedSize === size
-                          ? styles.selectedButton
-                          : styles.button,
-                      ]}
-                      onPress={() => setSelectedSize(size)}
-                      key={index}
-                    >
-                      <Text style={styles.buttonText}>{size}</Text>
-                    </Pressable>
+                  {selectedItem.availableSizes?.map((size) => (
+                    <View key={size}>
+                      <Pressable
+                        style={[
+                          styles.button,
+                          selectedSize === size
+                            ? styles.selectedButton
+                            : styles.button,
+                        ]}
+                        onPress={() => setSelectedSize(size)}
+                      >
+                        <Text style={styles.buttonText}>{size}</Text>
+                      </Pressable>
+                    </View>
                   ))}
                 </View>
                 <View style={styles.listStyle}>
@@ -77,7 +78,7 @@ const PopUpModal = ({
                   {selectedItem.milkOptions?.map((milk, index) => (
                     <ListItem
                       title={milk}
-                      key={index}
+                      key={milk}
                       IconComponent={Ionicons}
                       iconName={
                         milk === selectedMilk
@@ -87,7 +88,7 @@ const PopUpModal = ({
                       iconColor="black"
                       iconSize={12}
                       itemOnClick={() => setSelectedMilk(milk)}
-                    ></ListItem>
+                    />
                   ))}
                 </View>
                 <View style={styles.listStyle}>
@@ -95,7 +96,7 @@ const PopUpModal = ({
                   {selectedItem.otherOptions?.map((option, index) => (
                     <ListItem
                       title={option}
-                      key={index}
+                      key={option}
                       IconComponent={AntDesign}
                       iconName={
                         option === selectedOtherOption
@@ -105,7 +106,7 @@ const PopUpModal = ({
                       iconColor="black"
                       iconSize={12}
                       itemOnClick={() => setSelectedOtherOption(option)}
-                    ></ListItem>
+                    />
                   ))}
                 </View>
               </View>

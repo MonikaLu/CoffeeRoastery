@@ -58,7 +58,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
               style={styles.scrollView}
             >
               {items.map((item, index) => (
-                <>
+                <View key={index}>
                   {selectedItem && (
                     <PopUpModal
                       modalVisible={modalVisible}
@@ -68,7 +68,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
                     ></PopUpModal>
                   )}
                   <Pressable
-                    key={index}
+                    key={item.name}
                     style={styles.itemContainer}
                     onPress={() => {
                       setModalVisible(true);
@@ -90,7 +90,7 @@ const Menu = ({ selectedCategory }: MenuProps) => {
                     <Text>{item.name}</Text>
                     <Text>{item.price} Kr</Text>
                   </Pressable>
-                </>
+                </View>
               ))}
             </ScrollView>
           </View>
