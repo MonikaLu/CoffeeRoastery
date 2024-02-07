@@ -59,13 +59,12 @@ const Menu = ({ selectedCategory }: MenuProps) => {
               style={styles.scrollView}
             >
               {items.map((item, index) => (
-                <View>
+                <View key={index + item.name}>
                   {selectedItem && (
                     <PopUpModal
                       modalVisible={modalVisible}
                       setModalVisible={setModalVisible}
                       selectedItem={selectedItem}
-                      key={index + selectedItem.name}
                     />
                   )}
                   <Pressable
