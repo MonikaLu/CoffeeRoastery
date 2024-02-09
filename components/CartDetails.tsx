@@ -35,9 +35,11 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
             >
               <AntDesign name="closecircle" size={24} color="black" />
             </Pressable>
-            {cartItems.map((cartItem, index) => (
-              <MenuItemPreview key={index} item={cartItem} />
-            ))}
+            <View style={styles.cartDetailsContent}>
+              {cartItems.map((cartItem, index) => (
+                <MenuItemPreview key={index} item={cartItem} />
+              ))}
+            </View>
           </ScrollView>
         </View>
       </View>
@@ -68,6 +70,10 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 40,
     padding: 10,
+  },
+  cartDetailsContent: {
+    gap: 10,
+    margin: 10,
   },
 });
 export default CartDetails;
