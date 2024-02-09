@@ -33,6 +33,8 @@ const PopUpModal = ({
     OtherOptions[]
   >([]);
 
+  const [customizedItem, setCustomizedItem] = useState<IMenuItem>();
+
   const { increase } = useStore();
 
   const handleOtherOptions = (option: OtherOptions) => {
@@ -46,7 +48,15 @@ const PopUpModal = ({
   };
 
   const handleAddToCart = (item: IMenuItem) => {
+    let modifiedItem = {
+      ...item,
+    };
     increase(1);
+    modifiedItem.milkOptions = [selectedMilk];
+    modifiedItem.otherOptions = selectedOtherOptions;
+    modifiedItem.availableSizes = [selectedSize];
+    setCustomizedItem(modifiedItem);
+    console.log(modifiedItem);
   };
 
   return (
