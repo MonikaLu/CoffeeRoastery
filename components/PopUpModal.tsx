@@ -28,8 +28,19 @@ const PopUpModal = ({
   const [selectedMilk, setSelectedMilk] = useState<MilkOptions>(
     MilkOptions.WHOLE_MILK
   );
-  const [selectedOtherOption, setSelectedOtherOption] =
-    useState<OtherOptions>();
+  const [selectedOtherOptions, setSelectedOtherOptions] = useState<
+    OtherOptions[]
+  >([]);
+
+  const handleOtherOptions = (option: OtherOptions) => {
+    let updatedList = [...selectedOtherOptions];
+    if (updatedList.includes(option)) {
+      updatedList = updatedList.filter((item) => item !== option);
+    } else {
+      updatedList.push(option);
+    }
+    setSelectedOtherOptions(updatedList);
+  };
 
   return (
     <Modal
@@ -99,13 +110,13 @@ const PopUpModal = ({
                       key={option}
                       IconComponent={AntDesign}
                       iconName={
-                        option === selectedOtherOption
+                        selectedOtherOptions?.includes(option)
                           ? "checkcircle"
                           : "checkcircleo"
                       }
                       iconColor="black"
                       iconSize={12}
-                      itemOnClick={() => setSelectedOtherOption(option)}
+                      itemOnClick={() => handleOtherOptions(option)}
                     />
                   ))}
                 </View>
