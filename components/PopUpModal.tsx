@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DrinkSize, MilkOptions, OtherOptions } from "../enums";
 import ListItem from "./ListItem";
 import { useStore } from "./../store/store";
@@ -33,9 +33,7 @@ const PopUpModal = ({
     OtherOptions[]
   >([]);
 
-  const [customizedItem, setCustomizedItem] = useState<IMenuItem>();
-
-  const { increase } = useStore();
+  const { addToCart, cartItems } = useStore();
 
   const handleOtherOptions = (option: OtherOptions) => {
     let updatedList = [...selectedOtherOptions];
@@ -51,12 +49,10 @@ const PopUpModal = ({
     let modifiedItem = {
       ...item,
     };
-    increase(1);
     modifiedItem.milkOptions = [selectedMilk];
     modifiedItem.otherOptions = selectedOtherOptions;
     modifiedItem.availableSizes = [selectedSize];
-    setCustomizedItem(modifiedItem);
-    console.log(modifiedItem);
+    addToCart(modifiedItem);
   };
 
   return (
