@@ -7,13 +7,16 @@ import {
   Text,
   View,
 } from "react-native";
-
+import { useStore } from "./../store/store";
+import MenuItemPreview from "./MenuItemPreview";
 interface CartDetailsProps {
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
 }
 
 const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
+  const { cartItems, removeFromCart } = useStore();
+
   return (
     <Modal
       animationType="slide"
@@ -32,7 +35,9 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
             >
               <AntDesign name="closecircle" size={24} color="black" />
             </Pressable>
-            <Text>Test</Text>
+            {cartItems.map((cartItem, index) => (
+              <MenuItemPreview key={index} item={cartItem} />
+            ))}
           </ScrollView>
         </View>
       </View>
