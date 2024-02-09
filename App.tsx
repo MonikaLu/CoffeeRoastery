@@ -3,6 +3,8 @@ import HomeScreen from "./screens/HomeScreen";
 import MenuScreen from "./screens/MenuScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AntDesign } from "@expo/vector-icons";
+import Cart from "./components/Cart";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -14,7 +16,13 @@ export default function App() {
           component={HomeScreen}
           options={{ title: "Coffee Roastery" }}
         />
-        <Stack.Screen name="Menu" component={MenuScreen} />
+        <Stack.Screen
+          name="Menu"
+          component={MenuScreen}
+          options={{
+            headerRight: () => <Cart />,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
