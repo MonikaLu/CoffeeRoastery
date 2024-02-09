@@ -9,9 +9,10 @@ import {
   View,
 } from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DrinkSize, MilkOptions, OtherOptions } from "../enums";
 import ListItem from "./ListItem";
+import { useStore } from "./../store/store";
 
 interface ModalProps {
   modalVisible: boolean;
@@ -32,6 +33,8 @@ const PopUpModal = ({
     OtherOptions[]
   >([]);
 
+  const { increase } = useStore();
+
   const handleOtherOptions = (option: OtherOptions) => {
     let updatedList = [...selectedOtherOptions];
     if (updatedList.includes(option)) {
@@ -40,6 +43,10 @@ const PopUpModal = ({
       updatedList.push(option);
     }
     setSelectedOtherOptions(updatedList);
+  };
+
+  const handleAddToCart = (item: IMenuItem) => {
+    increase(1);
   };
 
   return (
@@ -116,14 +123,19 @@ const PopUpModal = ({
                       }
                       iconColor="black"
                       iconSize={12}
-                      itemOnClick={() => handleOtherOptions(option)}
+                      itemOnClick={() => {
+                        handleOtherOptions(option);
+                      }}
                     />
                   ))}
                 </View>
               </View>
               <Pressable
                 style={styles.addButton}
-                onPress={() => setModalVisible(!modalVisible)}
+                onPress={() => {
+                  handleAddToCart(selectedItem);
+                  setModalVisible(!modalVisible);
+                }}
               >
                 <Text style={styles.buttonText}>
                   Add to Cart {selectedItem.price} Kr
