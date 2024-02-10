@@ -3,7 +3,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 interface ButtonProps {
   label: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 export default function Button({ label, onPress }: ButtonProps) {

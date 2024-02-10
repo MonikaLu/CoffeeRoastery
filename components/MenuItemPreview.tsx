@@ -11,22 +11,24 @@ const MenuItemPreview = ({ item }: MenuItemPreviewProps) => {
   const { removeFromCart } = useStore();
 
   return (
-    <View style={styles.itemContainer}>
-      <Image style={styles.imageContainer} source={item.coverUrl}></Image>
-      <View>
-        <Text>{item.name}</Text>
-        <Text>{item.availableSizes}</Text>
-        <Text>{item.milkOptions}</Text>
-        <Text>{item.otherOptions}</Text>
+    <View>
+      <View style={styles.itemContainer}>
+        <Image style={styles.imageContainer} source={item.coverUrl}></Image>
+        <View>
+          <Text>{item.name}</Text>
+          <Text>{item.availableSizes}</Text>
+          <Text>{item.milkOptions}</Text>
+          <Text>{item.otherOptions}</Text>
+        </View>
+        <Text>{item.price} Kr</Text>
+        <Pressable
+          onPress={() => {
+            removeFromCart(item);
+          }}
+        >
+          <Ionicons name="trash" size={24} color="black" />
+        </Pressable>
       </View>
-      <Text>{item.price} Kr</Text>
-      <Pressable
-        onPress={() => {
-          removeFromCart(item);
-        }}
-      >
-        <Ionicons name="trash" size={24} color="black" />
-      </Pressable>
     </View>
   );
 };
