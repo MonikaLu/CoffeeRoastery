@@ -10,6 +10,7 @@ import {
 import { useStore } from "./../store/store";
 import MenuItemPreview from "./MenuItemPreview";
 import Button from "./Button";
+import { useEffect, useState } from "react";
 interface CartDetailsProps {
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
@@ -17,6 +18,15 @@ interface CartDetailsProps {
 
 const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
   const { cartItems } = useStore();
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    let totalPrice = 0;
+    cartItems.map((item) => {
+      totalPrice += item.price;
+    });
+    setPrice(totalPrice);
+  }, [cartItems.length]);
 
   return (
     <Modal
@@ -43,17 +53,22 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                 <Button label="Take away" />
                 <Button label="At our place" />
               </View>
-              <Text style={styles.titleStyling}>Items</Text>
+              <Text style={styles.titleStyling}>
+                Items ({cartItems.length})
+              </Text>
               {cartItems.map((cartItem, index) => (
                 <MenuItemPreview key={index} item={cartItem} />
               ))}
+              <View>
+                <Text style={styles.titleStyling}>Coupons/Loyalty Card</Text>
+                <View>
+                  <Text>Coupons should be here</Text>
+                </View>
+              </View>
+              <Pressable style={styles.orderButton}>
+                <Text>Place your order: {price} Kr</Text>
+              </Pressable>
             </View>
-            <View>
-              <Text style={styles.titleStyling}>Coupons/Loyalty Card</Text>
-            </View>
-            <Pressable style={styles.orderButton}>
-              <Text>Place your order</Text>
-            </Pressable>
           </ScrollView>
         </View>
       </View>
@@ -102,10 +117,18 @@ const styles = StyleSheet.create({
   },
   orderButton: {
     width: "100%",
-    height: 50,
+    height: 40,
     borderColor: "black",
     borderWidth: 1,
     borderStyle: "solid",
+    color: "#001858",
+    fontSize: 15,
+    fontWeight: "600",
+    backgroundColor: "#f3d2c1",
+    borderRadius: 5,
+    padding: 10,
+    marginTop: 30,
+    marginBottom: 30,
   },
 });
 export default CartDetails;

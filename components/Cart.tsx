@@ -31,10 +31,7 @@ const styles = StyleSheet.create({
   cartContainer: {
     flexDirection: "row",
     width: 30,
-    height: 30,
-    borderColor: "black",
-    borderStyle: "solid",
-    borderWidth: 1,
+    height: 20,
   },
 });
 
