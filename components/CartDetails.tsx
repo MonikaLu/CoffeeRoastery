@@ -66,7 +66,8 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                 </View>
               </View>
               <Pressable style={styles.orderButton}>
-                <Text>Place your order: {price} Kr</Text>
+                <Text>Place your order</Text>
+                <Text>{price} Kr</Text>
               </Pressable>
             </View>
           </ScrollView>
@@ -129,6 +130,8 @@ const styles = StyleSheet.create({
     padding: 10,
     marginTop: 30,
     marginBottom: 30,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });
 export default CartDetails;
