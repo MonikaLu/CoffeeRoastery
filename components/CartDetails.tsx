@@ -40,14 +40,17 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <ScrollView showsVerticalScrollIndicator>
-            <Pressable
-              style={styles.closeButton}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <AntDesign name="closecircle" size={24} color="black" />
-            </Pressable>
-            <View style={styles.cartDetailsContent}>
+            <View style={styles.titleText}>
               <Text style={styles.titleStyling}>Your Order</Text>
+              <Pressable
+                style={styles.closeButton}
+                onPress={() => setModalVisible(!modalVisible)}
+              >
+                <AntDesign name="closecircle" size={24} color="black" />
+              </Pressable>
+            </View>
+
+            <View style={styles.cartDetailsContent}>
               <Text style={styles.titleStyling}>Pick Up Options</Text>
               <View style={styles.buttons}>
                 <Button label="Take away" />
@@ -132,6 +135,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  titleText: {
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flex: 1,
+    padding: 10,
   },
 });
 export default CartDetails;

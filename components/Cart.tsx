@@ -6,7 +6,7 @@ import CartDetails from "./CartDetails";
 
 const Cart = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { cartItemsAmount } = useStore();
+  const { cartItems } = useStore();
 
   return (
     <>
@@ -17,7 +17,7 @@ const Cart = () => {
         }}
       >
         <AntDesign name="shoppingcart" size={24} color="black" />
-        <Text>{cartItemsAmount}</Text>
+        <Text>{cartItems.length}</Text>
       </Pressable>
       <CartDetails
         modalVisible={modalVisible}
