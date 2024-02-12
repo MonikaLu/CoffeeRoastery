@@ -1,5 +1,4 @@
 import { DefaultTheme, Theme } from "@react-navigation/native";
-import { typography } from "./typography";
 
 export const theme: Theme = {
   ...DefaultTheme,
@@ -12,6 +11,5 @@ export const theme: Theme = {
     text: "#172c66",
     border: "#001858",
     notification: "#8bd3dd",
-    // title: "#422006",
   },
 };

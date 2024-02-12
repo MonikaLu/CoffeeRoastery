@@ -21,10 +21,12 @@ const HomeScreen = ({ navigation }: ScreenProps) => {
         <Image source={PlaceholderImage} style={styles.image} />
       </View>
       <Text style={{ color: theme.colors.text }}>Coffee Roastery</Text>
-      <Button
-        label="Let's coffee!"
-        onPress={() => navigation.navigate("Menu")}
-      />
+      <View style={styles.buttonContainer}>
+        <Button
+          label="Let's coffee!"
+          onPress={() => navigation.navigate("Menu")}
+        />
+      </View>
     </View>
   );
 };
@@ -44,6 +46,10 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 36,
+  },
+  buttonContainer: {
+    width: 100,
+    height: 30,
   },
 });
 
