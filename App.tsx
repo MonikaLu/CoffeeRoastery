@@ -1,15 +1,14 @@
-import { StyleSheet } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import MenuScreen from "./screens/MenuScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AntDesign } from "@expo/vector-icons";
 import Cart from "./components/Cart";
+import { theme } from "./theme";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={theme}>
       <Stack.Navigator>
         <Stack.Screen
           name="Home"
@@ -27,31 +26,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#4ade80",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  imageContainer: {
-    flex: 1,
-    paddingTop: 58,
-  },
-  orderContainer: {
-    flex: 1,
-    backgroundColor: "#4ade80",
-    alignItems: "center",
-  },
-  image: {
-    width: 100,
-    height: 100,
-    borderRadius: 36,
-  },
-  titleText: {
-    fontSize: 40,
-    fontWeight: "bold",
-    color: "#ffffff",
-    fontFamily: "Cochin",
-  },
-});
