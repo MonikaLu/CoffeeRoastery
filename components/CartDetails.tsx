@@ -11,6 +11,8 @@ import { useStore } from "./../store/store";
 import MenuItemPreview from "./MenuItemPreview";
 import Button from "./Button";
 import { useEffect, useState } from "react";
+import { theme } from "../theme";
+import { typography } from "../typography";
 interface CartDetailsProps {
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
@@ -40,7 +42,7 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <ScrollView showsVerticalScrollIndicator>
-            <View style={styles.titleText}>
+            <View style={styles.header}>
               <Text style={styles.titleStyling}>Your Order</Text>
               <Pressable
                 style={styles.closeButton}
@@ -81,7 +83,7 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
 };
 const styles = StyleSheet.create({
   modalView: {
-    backgroundColor: "#fef6e4",
+    backgroundColor: theme.colors.background,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -109,26 +111,22 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   titleStyling: {
-    color: "#422006",
-    fontSize: 20,
-    fontWeight: "300",
+    ...typography.h3,
   },
   buttons: {
     flexDirection: "row",
-    justifyContent: "flex-start",
     columnGap: 10,
-    width: "100%",
+    width: "40%",
+    height: 50,
   },
   orderButton: {
+    ...typography.buttonText,
     width: "100%",
     height: 40,
-    borderColor: "#172c66",
+    borderColor: theme.colors.border,
     borderWidth: 1,
     borderStyle: "solid",
-    color: "#172c66",
-    fontSize: 15,
-    fontWeight: "600",
-    backgroundColor: "#f582ae",
+    backgroundColor: theme.colors.card,
     borderRadius: 5,
     padding: 10,
     marginTop: 30,
@@ -136,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  titleText: {
+  header: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",

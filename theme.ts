@@ -5,11 +5,11 @@ export const theme: Theme = {
   dark: false,
   colors: {
     ...DefaultTheme.colors,
-    background: "#fef6e4",
-    primary: "#f3d2c1",
-    card: "#f3d2c1",
-    text: "#172c66",
-    border: "#001858",
-    notification: "#8bd3dd",
+    background: "#fef6e4", // light brown
+    primary: "#f3d2c1", // brown pink
+    card: "#f582ae", // pink
+    text: "#172c66", // blue
+    border: "#001858", //darker blue
+    notification: "#8bd3dd", // lightblue
   },
 };

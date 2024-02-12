@@ -12,15 +12,16 @@ export const typography = StyleSheet.create({
     fontWeight: "bold",
   },
   h3: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 20,
+    fontWeight: "300",
+    color: theme.colors.text,
   },
   body: {
     fontSize: 16,
     fontWeight: "normal",
   },
   buttonText: {
-    fontSize: 12,
+    fontSize: 15,
     fontWeight: "normal",
     color: theme.colors.text,
   },

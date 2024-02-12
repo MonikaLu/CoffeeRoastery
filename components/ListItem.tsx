@@ -1,12 +1,13 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { theme } from "../theme";
 
 interface ListItemProps {
   title: string;
   itemOnClick: () => void;
-  IconComponent: React.ElementType; // Use React.ElementType for component type
-  iconName: React.ComponentProps<typeof Ionicons | typeof AntDesign>["name"]; // Use Ionicons as a base type for icon names
+  IconComponent: React.ElementType;
+  iconName: React.ComponentProps<typeof Ionicons | typeof AntDesign>["name"];
   iconSize?: number;
   iconColor?: string;
 }
@@ -16,8 +17,8 @@ const ListItem: React.FC<ListItemProps> = ({
   itemOnClick,
   IconComponent,
   iconName,
-  iconColor = "black", // Provide default value
-  iconSize = 24, // Provide default value
+  iconColor = "black",
+  iconSize = 24,
 }) => {
   return (
     <Pressable style={styles.itemContainer} onPress={itemOnClick}>
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "gray",
+    borderColor: theme.colors.border,
     flexDirection: "row",
     justifyContent: "space-between",
   },
