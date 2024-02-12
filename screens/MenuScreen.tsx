@@ -3,6 +3,7 @@ import CategoriesTab from "../components/CategoriesTab";
 import Menu from "../components/Menu";
 import { useState } from "react";
 import { MenuItemCategories } from "./../enums";
+import { theme } from "../theme";
 
 const MenuScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState<MenuItemCategories>(
@@ -23,14 +24,9 @@ const MenuScreen = () => {
 const styles = StyleSheet.create({
   orderContainer: {
     flex: 1,
-    backgroundColor: "#fff7ed",
+    backgroundColor: theme.colors.background,
     flexDirection: "column",
     justifyContent: "space-evenly",
-  },
-  titleText: {
-    fontSize: 15,
-    fontWeight: "bold",
-    color: "#000000",
   },
 });
 

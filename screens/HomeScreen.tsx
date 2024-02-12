@@ -3,6 +3,7 @@ const PlaceholderImage = require("./../assets/logo.png");
 import Button from "../components/Button";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../interfaces/rootStack";
+import { theme } from "../theme";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -19,7 +20,7 @@ const HomeScreen = ({ navigation }: ScreenProps) => {
       <View>
         <Image source={PlaceholderImage} style={styles.image} />
       </View>
-      <Text style={{ color: "#000000" }}>Coffee Roastery</Text>
+      <Text style={{ color: theme.colors.text }}>Coffee Roastery</Text>
       <Button
         label="Let's coffee!"
         onPress={() => navigation.navigate("Menu")}
@@ -31,7 +32,7 @@ const HomeScreen = ({ navigation }: ScreenProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff7ed",
+    backgroundColor: theme.colors.background,
     alignItems: "center",
     justifyContent: "center",
   },
