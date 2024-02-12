@@ -8,8 +8,9 @@ export const typography = StyleSheet.create({
     color: "red",
   },
   h2: {
-    fontSize: 28,
-    fontWeight: "bold",
+    fontSize: 24,
+    fontWeight: "300",
+    color: theme.colors.text,
   },
   h3: {
     fontSize: 20,
@@ -17,12 +18,13 @@ export const typography = StyleSheet.create({
     color: theme.colors.text,
   },
   body: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "normal",
+    color: theme.colors.text,
   },
   buttonText: {
     fontSize: 15,
-    fontWeight: "normal",
+    fontWeight: "600",
     color: theme.colors.text,
   },
 });

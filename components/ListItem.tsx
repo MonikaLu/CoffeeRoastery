@@ -17,12 +17,12 @@ const ListItem: React.FC<ListItemProps> = ({
   itemOnClick,
   IconComponent,
   iconName,
-  iconColor = "black",
+  iconColor = theme.colors.text,
   iconSize = 24,
 }) => {
   return (
     <Pressable style={styles.itemContainer} onPress={itemOnClick}>
-      <Text>{title}</Text>
+      <Text style={styles.textStyling}>{title}</Text>
       <IconComponent name={iconName} size={iconSize} color={iconColor} />
     </Pressable>
   );
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.border,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  textStyling: {
+    color: theme.colors.text,
   },
 });
 

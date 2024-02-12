@@ -9,10 +9,13 @@ import {
   View,
 } from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DrinkSize, MilkOptions, OtherOptions } from "../enums";
 import ListItem from "./ListItem";
 import { useStore } from "./../store/store";
+import { theme } from "../theme";
+import Button from "./Button";
+import { typography } from "../typography";
 
 interface ModalProps {
   modalVisible: boolean;
@@ -33,7 +36,7 @@ const PopUpModal = ({
     OtherOptions[]
   >([]);
 
-  const { addToCart, cartItems } = useStore();
+  const { addToCart } = useStore();
 
   const handleOtherOptions = (option: OtherOptions) => {
     let updatedList = [...selectedOtherOptions];
@@ -74,11 +77,11 @@ const PopUpModal = ({
               <AntDesign name="closecircle" size={24} color="black" />
             </Pressable>
             <View style={styles.contentContainer}>
+              <Text style={styles.titleStyle}>{selectedItem?.name}</Text>
               <Image
                 style={styles.itemPicture}
                 source={selectedItem.coverUrl}
               ></Image>
-              <Text style={styles.titleStyle}>{selectedItem?.name}</Text>
               <View style={styles.detailsList}>
                 <View style={styles.sizeButtonsContainer}>
                   {selectedItem.availableSizes?.map((size) => (
@@ -99,7 +102,7 @@ const PopUpModal = ({
                 </View>
                 <View style={styles.listStyle}>
                   <Text style={styles.titleStyle}>Milk Options</Text>
-                  {selectedItem.milkOptions?.map((milk, index) => (
+                  {selectedItem.milkOptions?.map((milk) => (
                     <ListItem
                       title={milk}
                       key={milk}
@@ -109,7 +112,7 @@ const PopUpModal = ({
                           ? "radio-button-on-outline"
                           : "radio-button-off-outline"
                       }
-                      iconColor="black"
+                      iconColor={theme.colors.text}
                       iconSize={12}
                       itemOnClick={() => setSelectedMilk(milk)}
                     />
@@ -117,7 +120,7 @@ const PopUpModal = ({
                 </View>
                 <View style={styles.listStyle}>
                   <Text style={styles.titleStyle}>Other Options</Text>
-                  {selectedItem.otherOptions?.map((option, index) => (
+                  {selectedItem.otherOptions?.map((option) => (
                     <ListItem
                       title={option}
                       key={option}
@@ -127,7 +130,7 @@ const PopUpModal = ({
                           ? "checkcircle"
                           : "checkcircleo"
                       }
-                      iconColor="black"
+                      iconColor={theme.colors.text}
                       iconSize={12}
                       itemOnClick={() => {
                         handleOtherOptions(option);
@@ -157,7 +160,7 @@ const PopUpModal = ({
 
 const styles = StyleSheet.create({
   modalView: {
-    backgroundColor: "#fef6e4",
+    backgroundColor: theme.colors.background,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -185,7 +188,7 @@ const styles = StyleSheet.create({
   itemPicture: {
     width: 350,
     height: 350,
-    borderColor: "gray",
+    borderColor: theme.colors.border,
     borderWidth: 1,
   },
   detailsList: {
@@ -202,15 +205,15 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   button: {
-    backgroundColor: "#fef6e4",
+    backgroundColor: theme.colors.background,
     borderRadius: 5,
     padding: 10,
-    borderColor: "#001858",
+    borderColor: theme.colors.border,
     borderStyle: "solid",
     borderWidth: 1,
   },
   addButton: {
-    backgroundColor: "#f3d2c1",
+    backgroundColor: theme.colors.card,
     borderRadius: 5,
     padding: 10,
     width: "90%",
@@ -224,23 +227,13 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   selectedButton: {
-    backgroundColor: "#f3d2c1",
+    backgroundColor: theme.colors.notification,
   },
-
-  // Text
   titleStyle: {
-    color: "black",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
-  bodyText: {
-    color: "#001858",
-    fontSize: 20,
+    ...typography.h2,
   },
   buttonText: {
-    color: "#001858",
-    fontSize: 15,
-    fontWeight: "600",
+    ...typography.buttonText,
   },
 });
 

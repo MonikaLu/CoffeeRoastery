@@ -2,6 +2,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { IMenuItem } from "../interfaces/IMenuItem";
 import { Ionicons } from "@expo/vector-icons";
 import { useStore } from "../store/store";
+import { theme } from "../theme";
 
 interface MenuItemPreviewProps {
   item: IMenuItem;
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderStyle: "solid",
-    borderColor: "gray",
+    borderColor: theme.colors.border,
     flexDirection: "row",
     justifyContent: "space-between",
   },

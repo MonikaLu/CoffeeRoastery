@@ -15,6 +15,8 @@ import { menuCategories } from "./CategoriesTab";
 import { AntDesign } from "@expo/vector-icons";
 import PopUpModal from "./PopUpModal";
 import { IMenuItem } from "../interfaces/IMenuItem";
+import { theme } from "../theme";
+import { typography } from "../typography";
 interface MenuProps {
   selectedCategory: MenuItemCategories;
 }
@@ -82,13 +84,13 @@ const Menu = ({ selectedCategory }: MenuProps) => {
                       />
                       <AntDesign
                         name="pluscircle"
-                        size={30}
-                        color="black"
+                        size={20}
+                        color={theme.colors.text}
                         style={styles.iconStyle}
                       />
                     </View>
-                    <Text>{item.name}</Text>
-                    <Text>{item.price} Kr</Text>
+                    <Text style={styles.textStyling}>{item.name}</Text>
+                    <Text style={styles.textStyling}>{item.price} Kr</Text>
                   </Pressable>
                 </View>
               ))}
@@ -96,16 +98,16 @@ const Menu = ({ selectedCategory }: MenuProps) => {
           </View>
         </View>
       ))}
-      <View style={styles.test}></View>
+      <View style={styles.bottom}></View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  test: {
+  bottom: {
     height: 450,
     width: "100%",
-    backgroundColor: "black",
+    backgroundColor: theme.colors.background,
   },
   scrollView: {
     flex: 1,
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    borderColor: "gray",
+    borderColor: theme.colors.border,
     borderWidth: 1,
   },
   groupContainer: {
@@ -136,9 +138,10 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   groupTitle: {
-    color: "#422006",
-    fontSize: 20,
-    fontWeight: "300",
+    ...typography.h3,
+  },
+  textStyling: {
+    ...typography.body,
   },
   imageContainer: {
     position: "relative",

@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -7,6 +6,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { MenuItemCategories } from "./../enums";
+import { theme } from "../theme";
 
 interface CategoriesTabProps {
   setSelectedCategory: (category: MenuItemCategories) => void;
@@ -67,15 +67,15 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   navText: {
-    color: "#422006",
+    color: theme.colors.text,
     fontSize: 16,
     fontWeight: "100",
   },
   selectedNavItem: {
-    fontWeight: "300",
-    textDecorationColor: "black",
+    fontWeight: "400",
+    textDecorationColor: theme.colors.text,
     textDecorationStyle: "solid",
-    color: "#000000",
+    color: theme.colors.text,
   },
 });
 
