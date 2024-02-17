@@ -12,14 +12,14 @@ interface ListItemProps {
   iconColor?: string;
 }
 
-const ListItem: React.FC<ListItemProps> = ({
+const ListItem = ({
   title,
   itemOnClick,
   IconComponent,
   iconName,
   iconColor = theme.colors.text,
   iconSize = 24,
-}) => {
+}: ListItemProps) => {
   return (
     <Pressable style={styles.itemContainer} onPress={itemOnClick}>
       <Text style={styles.textStyling}>{title}</Text>

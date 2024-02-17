@@ -7,6 +7,11 @@ export enum MenuItemCategories {
   MERCHANDISE = "MERCHANDISE",
 }
 
+export enum orderTypes {
+  TAKE_AWAY = "TAKE AWAY",
+  AT_OUR_PLACE = "AT OUR PLACE",
+}
+
 export enum DrinkSize {
   SMALL = "SMALL",
   MEDIUM = "MEDIUM",
