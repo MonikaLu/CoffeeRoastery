@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { useStore } from "./../store/store";
 import MenuItemPreview from "./MenuItemPreview";
-import Button from "./Button";
 import { useEffect, useState } from "react";
 import { theme } from "../theme";
 import { typography } from "../typography";
@@ -32,6 +31,13 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
     items: cartItems,
     comment: "",
   };
+
+  const now = new Date();
+  now.setMinutes(now.getMinutes() + 5);
+  const orderReady = now.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   useEffect(() => {
     let totalPrice = 0;
@@ -113,6 +119,10 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                 <Text>Place your order</Text>
                 <Text>{totalPrice} Kr</Text>
               </Pressable>
+              <Text>
+                Estimated ready at time:
+                {orderReady}
+              </Text>
             </View>
           </ScrollView>
         </View>
