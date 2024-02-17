@@ -21,17 +21,15 @@ interface CartDetailsProps {
 }
 
 const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
-  const { cartItems } = useStore();
-  const [price, setPrice] = useState(0);
+  const { cartItems, setTotalPrice, totalPrice, setOrder } = useStore();
   const [selectedOrderType, setSelectedOrderType] = useState<orderTypes>(
     orderTypes.TAKE_AWAY
   );
-  const [newOrder, setNewOrder] = useState<IOrder>();
 
-  const order: IOrder = {
-    price: 0,
-    orderType: orderTypes.TAKE_AWAY,
-    items: [],
+  const newOrder: IOrder = {
+    price: totalPrice,
+    orderType: selectedOrderType,
+    items: cartItems,
     comment: "",
   };
 
@@ -40,7 +38,7 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
     cartItems.map((item) => {
       totalPrice += item.price;
     });
-    setPrice(totalPrice);
+    setTotalPrice(totalPrice);
   }, [cartItems.length]);
 
   return (
@@ -106,9 +104,14 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                   <Text>Coupons should be here</Text>
                 </View>
               </View>
-              <Pressable style={styles.orderButton}>
+              <Pressable
+                style={styles.orderButton}
+                onPress={() => {
+                  setOrder(newOrder);
+                }}
+              >
                 <Text>Place your order</Text>
-                <Text>{price} Kr</Text>
+                <Text>{totalPrice} Kr</Text>
               </Pressable>
             </View>
           </ScrollView>
