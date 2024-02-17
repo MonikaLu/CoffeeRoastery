@@ -13,6 +13,8 @@ import Button from "./Button";
 import { useEffect, useState } from "react";
 import { theme } from "../theme";
 import { typography } from "../typography";
+import { IOrder } from "../interfaces/IOrder";
+import { orderTypes } from "../enums";
 interface CartDetailsProps {
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
@@ -21,6 +23,17 @@ interface CartDetailsProps {
 const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
   const { cartItems } = useStore();
   const [price, setPrice] = useState(0);
+  const [selectedOrderType, setSelectedOrderType] = useState<orderTypes>(
+    orderTypes.TAKE_AWAY
+  );
+  const [newOrder, setNewOrder] = useState<IOrder>();
+
+  const order: IOrder = {
+    price: 0,
+    orderType: orderTypes.TAKE_AWAY,
+    items: [],
+    comment: "",
+  };
 
   useEffect(() => {
     let totalPrice = 0;
@@ -55,9 +68,32 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
             <View style={styles.cartDetailsContent}>
               <Text style={styles.titleStyling}>Pick Up Options</Text>
               <View style={styles.buttons}>
-                <Button label="Take away" />
-                <Button label="At our place" />
+                <Pressable
+                  style={[
+                    styles.button,
+                    selectedOrderType === orderTypes.TAKE_AWAY
+                      ? styles.selectedButton
+                      : styles.button,
+                  ]}
+                  onPress={() => setSelectedOrderType(orderTypes.TAKE_AWAY)}
+                >
+                  <Text style={styles.buttonText}>{orderTypes.TAKE_AWAY}</Text>
+                </Pressable>
+                <Pressable
+                  style={[
+                    styles.button,
+                    selectedOrderType === orderTypes.AT_OUR_PLACE
+                      ? styles.selectedButton
+                      : styles.button,
+                  ]}
+                  onPress={() => setSelectedOrderType(orderTypes.AT_OUR_PLACE)}
+                >
+                  <Text style={styles.buttonText}>
+                    {orderTypes.AT_OUR_PLACE}
+                  </Text>
+                </Pressable>
               </View>
+
               <Text style={styles.titleStyling}>
                 Items ({cartItems.length})
               </Text>
@@ -134,12 +170,26 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  selectedButton: {
+    backgroundColor: theme.colors.notification,
+  },
   header: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
     flex: 1,
     padding: 10,
+  },
+  button: {
+    backgroundColor: theme.colors.background,
+    borderRadius: 5,
+    padding: 10,
+    borderColor: theme.colors.border,
+    borderStyle: "solid",
+    borderWidth: 1,
+  },
+  buttonText: {
+    ...typography.buttonText,
   },
 });
 export default CartDetails;
