@@ -35,10 +35,14 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
   const handleOrderType = (type: orderTypes) => {
     if (type === orderTypes.AT_OUR_PLACE) {
       setSelectedOrderType(orderTypes.AT_OUR_PLACE);
-      setTotalPrice(totalPrice + 3);
+      if (totalPrice !== 0) {
+        setTotalPrice(totalPrice + 3);
+      }
     } else {
       setSelectedOrderType(orderTypes.TAKE_AWAY);
-      setTotalPrice(totalPrice - 3);
+      if (totalPrice !== 0) {
+        setTotalPrice(totalPrice - 3);
+      }
     }
   };
 
