@@ -268,12 +268,11 @@ const styles = StyleSheet.create({
   },
   confirmationStyling: {
     width: 150,
-    height: 100,
-    backgroundColor: theme.colors.background,
+    height: 150,
+    backgroundColor: theme.colors.primary,
     borderColor: theme.colors.border,
     borderStyle: "solid",
     borderWidth: 1,
-    justifyContent: "center",
     alignItems: "center",
   },
 });
