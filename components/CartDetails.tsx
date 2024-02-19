@@ -110,6 +110,22 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                   <Text>Coupons should be here</Text>
                 </View>
               </View>
+              <View>
+                <Text style={styles.titleStyling}>To pay</Text>
+                <View style={styles.paymentStyling}>
+                  <Text>Ordering</Text>
+                  <Text>NOK {totalPrice}</Text>
+                </View>
+                <View style={styles.paymentStyling}>
+                  <Text>Discount</Text>
+                  <Text>-0</Text>
+                </View>
+                <View style={styles.paymentStyling}>
+                  <Text>In total</Text>
+                  <Text>NOK {totalPrice}</Text>
+                </View>
+              </View>
+              <Text>Ready at: Kl {orderReady}</Text>
               <Pressable
                 style={styles.orderButton}
                 onPress={() => {
@@ -117,12 +133,9 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                 }}
               >
                 <Text>Place your order</Text>
+
                 <Text>{totalPrice} Kr</Text>
               </Pressable>
-              <Text>
-                Estimated ready at time:
-                {orderReady}
-              </Text>
             </View>
           </ScrollView>
         </View>
@@ -203,6 +216,11 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     ...typography.buttonText,
+  },
+  paymentStyling: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: 10,
   },
 });
 export default CartDetails;
