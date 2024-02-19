@@ -1,5 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
 import {
+  ActivityIndicator,
   Modal,
   Pressable,
   ScrollView,
@@ -21,6 +22,7 @@ interface CartDetailsProps {
 
 const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
   const { cartItems, setTotalPrice, totalPrice, setOrder } = useStore();
+  const [loading, setLoading] = useState(false);
   const [selectedOrderType, setSelectedOrderType] = useState<orderTypes>(
     orderTypes.TAKE_AWAY
   );
@@ -50,7 +52,11 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
   const handleOrderPlaced = (order: IOrder) => {
     setOrder(order);
     setModalVisible(false);
-    setConfirmation(true);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setConfirmation(true);
+    }, 2000);
   };
 
   const now = new Date();
@@ -164,26 +170,33 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
           </View>
         </View>
       </Modal>
-      <Modal
-        animationType="none"
-        transparent={true}
-        visible={confirmation}
-        onRequestClose={() => {
-          setConfirmation(!confirmation);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.confirmationStyling}>
-            <Pressable
-              style={styles.closeButton}
-              onPress={() => setConfirmation(!confirmation)}
-            >
-              <AntDesign name="closecircle" size={24} color="black" />
-            </Pressable>
-            <Text>Your order is sent!</Text>
+      <View style={{ flex: 1 }}>
+        {loading && (
+          <View style={styles.centeredView}>
+            <ActivityIndicator size="large" color={theme.colors.border} />
           </View>
-        </View>
-      </Modal>
+        )}
+        <Modal
+          animationType="none"
+          transparent={true}
+          visible={confirmation}
+          onRequestClose={() => {
+            setConfirmation(!confirmation);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.confirmationStyling}>
+              <Pressable
+                style={styles.closeButton}
+                onPress={() => setConfirmation(!confirmation)}
+              >
+                <AntDesign name="closecircle" size={24} color="black" />
+              </Pressable>
+              <Text>Your order is sent!</Text>
+            </View>
+          </View>
+        </Modal>
+      </View>
     </View>
   );
 };
