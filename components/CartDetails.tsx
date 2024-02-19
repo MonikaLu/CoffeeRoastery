@@ -32,6 +32,16 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
     comment: "",
   };
 
+  const handleOrderType = (type: orderTypes) => {
+    if (type === orderTypes.AT_OUR_PLACE) {
+      setSelectedOrderType(orderTypes.AT_OUR_PLACE);
+      setTotalPrice(totalPrice + 3);
+    } else {
+      setSelectedOrderType(orderTypes.TAKE_AWAY);
+      setTotalPrice(totalPrice - 3);
+    }
+  };
+
   const now = new Date();
   now.setMinutes(now.getMinutes() + 5);
   const orderReady = now.toLocaleTimeString([], {
@@ -79,7 +89,7 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                       ? styles.selectedButton
                       : styles.button,
                   ]}
-                  onPress={() => setSelectedOrderType(orderTypes.TAKE_AWAY)}
+                  onPress={() => handleOrderType(orderTypes.TAKE_AWAY)}
                 >
                   <Text style={styles.buttonText}>{orderTypes.TAKE_AWAY}</Text>
                 </Pressable>
@@ -90,10 +100,10 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
                       ? styles.selectedButton
                       : styles.button,
                   ]}
-                  onPress={() => setSelectedOrderType(orderTypes.AT_OUR_PLACE)}
+                  onPress={() => handleOrderType(orderTypes.AT_OUR_PLACE)}
                 >
                   <Text style={styles.buttonText}>
-                    {orderTypes.AT_OUR_PLACE}
+                    {orderTypes.AT_OUR_PLACE} (+3kr)
                   </Text>
                 </Pressable>
               </View>
