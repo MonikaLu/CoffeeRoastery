@@ -170,37 +170,57 @@ const CartDetails = ({ modalVisible, setModalVisible }: CartDetailsProps) => {
           </View>
         </View>
       </Modal>
-      <View style={{ flex: 1 }}>
-        {loading && (
-          <View style={styles.centeredView}>
-            <ActivityIndicator size="large" color={theme.colors.border} />
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={confirmation}
+        onRequestClose={() => {
+          setConfirmation(!confirmation);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.confirmationStyling}>
+            <Pressable
+              style={styles.closeButton}
+              onPress={() => setConfirmation(!confirmation)}
+            >
+              <AntDesign name="closecircle" size={24} color="black" />
+            </Pressable>
+            <Text style={styles.titleStyling}>Your order is sent!</Text>
           </View>
-        )}
-        <Modal
-          animationType="none"
-          transparent={true}
-          visible={confirmation}
-          onRequestClose={() => {
-            setConfirmation(!confirmation);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.confirmationStyling}>
-              <Pressable
-                style={styles.closeButton}
-                onPress={() => setConfirmation(!confirmation)}
-              >
-                <AntDesign name="closecircle" size={24} color="black" />
-              </Pressable>
-              <Text>Your order is sent!</Text>
-            </View>
+        </View>
+      </Modal>
+      {loading && (
+        <View style={styles.centeredView}>
+          <View style={styles.test}>
+            <ActivityIndicator
+              color={theme.colors.border}
+              style={styles.loadingStyling}
+            />
+            <Text>Hello</Text>
           </View>
-        </Modal>
-      </View>
+        </View>
+      )}
     </View>
   );
 };
 const styles = StyleSheet.create({
+  test: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1000, // Ensure it's rendered above other components
+    backgroundColor: "rgba(0,0,0,0.5)", // Optional: for visibility, remo
+  },
+  loadingStyling: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   modalView: {
     backgroundColor: theme.colors.background,
     shadowColor: "#000",
@@ -218,6 +238,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    backgroundColor: "black",
   },
   closeButton: {
     alignSelf: "flex-end",
@@ -280,7 +306,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   confirmationStyling: {
-    width: 150,
+    width: 200,
     height: 150,
     backgroundColor: theme.colors.primary,
     borderColor: theme.colors.border,
