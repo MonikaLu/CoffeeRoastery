@@ -24,7 +24,7 @@ const MenuScreen = () => {
 const styles = StyleSheet.create({
   orderContainer: {
     flex: 1,
-    backgroundColor: theme.colors.background,
+    backgroundColor: theme.colors.primary,
     flexDirection: "column",
     justifyContent: "space-evenly",
   },

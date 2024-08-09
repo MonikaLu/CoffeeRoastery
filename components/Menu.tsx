@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     minHeight: 150,
-    margin: 10,
+    margin: -10,
   },
   itemContainer: {
     borderRadius: 50,
