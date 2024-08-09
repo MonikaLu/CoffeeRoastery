@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 0,
-    backgroundColor: "black",
+    backgroundColor: theme.colors.primary,
   },
   closeButton: {
     alignSelf: "flex-end",
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   confirmationStyling: {
     width: 200,
     height: 150,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.colors.background,
     borderColor: theme.colors.border,
     borderStyle: "solid",
     borderWidth: 1,
